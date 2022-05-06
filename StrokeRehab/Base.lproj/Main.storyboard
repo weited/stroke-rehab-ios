@@ -93,21 +93,30 @@
         <!--Home-->
         <scene sceneID="COe-4h-hvL">
             <objects>
-                <viewController id="N8o-dv-eCW" sceneMemberID="viewController">
+                <viewController id="N8o-dv-eCW" customClass="HomeViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R5u-fl-hem">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzG-YN-3Yt">
-                                <rect key="frame" x="197" y="212" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VT4-0K-TNp">
+                                <rect key="frame" x="8" y="188" width="398" height="38.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HzG-YN-3Yt">
+                                        <rect key="frame" x="130" y="0.0" width="138" height="38.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Pzq-hB-d8z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="VT4-0K-TNp" firstAttribute="top" secondItem="Pzq-hB-d8z" secondAttribute="top" constant="100" id="1ug-dT-Hco"/>
+                            <constraint firstItem="VT4-0K-TNp" firstAttribute="leading" secondItem="Pzq-hB-d8z" secondAttribute="leading" constant="8" id="E7U-cA-jvG"/>
+                            <constraint firstItem="Pzq-hB-d8z" firstAttribute="trailing" secondItem="VT4-0K-TNp" secondAttribute="trailing" constant="8" id="j8O-tF-l9R"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="vRl-kO-iBg"/>
                 </viewController>
