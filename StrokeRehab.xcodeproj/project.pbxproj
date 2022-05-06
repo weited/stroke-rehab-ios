@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CC719F74ABB4743AE230A27 /* Pods_StrokeRehab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D7F79CB98BF7CDB85FB6C4 /* Pods_StrokeRehab.framework */; };
 		5C6C723F28256CE900EF9E6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C723E28256CE900EF9E6E /* AppDelegate.swift */; };
 		5C6C724128256CE900EF9E6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C724028256CE900EF9E6E /* SceneDelegate.swift */; };
 		5C6C724328256CE900EF9E6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C724228256CE900EF9E6E /* ViewController.swift */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30C413FF9B311D92AE0B798B /* Pods-StrokeRehab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrokeRehab.release.xcconfig"; path = "Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab.release.xcconfig"; sourceTree = "<group>"; };
+		41D7F79CB98BF7CDB85FB6C4 /* Pods_StrokeRehab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StrokeRehab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6C723B28256CE900EF9E6E /* StrokeRehab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrokeRehab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6C723E28256CE900EF9E6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C6C724028256CE900EF9E6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		5C6C724A28256CEA00EF9E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C6C724C28256CEA00EF9E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C6C7252282573EB00EF9E6E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F01280D8A4A3D74A724B93A9 /* Pods-StrokeRehab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrokeRehab.debug.xcconfig"; path = "Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CC719F74ABB4743AE230A27 /* Pods_StrokeRehab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58DF2111CC0F9CDE7013EC28 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F01280D8A4A3D74A724B93A9 /* Pods-StrokeRehab.debug.xcconfig */,
+				30C413FF9B311D92AE0B798B /* Pods-StrokeRehab.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5C6C723228256CE900EF9E6E = {
 			isa = PBXGroup;
 			children = (
 				5C6C723D28256CE900EF9E6E /* StrokeRehab */,
 				5C6C723C28256CE900EF9E6E /* Products */,
+				58DF2111CC0F9CDE7013EC28 /* Pods */,
+				902605146C730A71B97DD5B3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +87,14 @@
 			path = StrokeRehab;
 			sourceTree = "<group>";
 		};
+		902605146C730A71B97DD5B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41D7F79CB98BF7CDB85FB6C4 /* Pods_StrokeRehab.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C6C724F28256CEA00EF9E6E /* Build configuration list for PBXNativeTarget "StrokeRehab" */;
 			buildPhases = (
+				64134AF8C5E64F1713FE70AA /* [CP] Check Pods Manifest.lock */,
 				5C6C723728256CE900EF9E6E /* Sources */,
 				5C6C723828256CE900EF9E6E /* Frameworks */,
 				5C6C723928256CE900EF9E6E /* Resources */,
+				AB57DBF1CF8057C187248232 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		64134AF8C5E64F1713FE70AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StrokeRehab-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB57DBF1CF8057C187248232 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5C6C723728256CE900EF9E6E /* Sources */ = {
@@ -288,6 +357,7 @@
 		};
 		5C6C725028256CEA00EF9E6E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01280D8A4A3D74A724B93A9 /* Pods-StrokeRehab.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,6 +385,7 @@
 		};
 		5C6C725128256CEA00EF9E6E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30C413FF9B311D92AE0B798B /* Pods-StrokeRehab.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
