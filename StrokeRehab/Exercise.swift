@@ -18,8 +18,8 @@ public struct Exercise : Codable
     var repetition : Int
     var completed : Bool
     var startAt : String
-    var endAt : String
-    var btnPressed: [String:Int]
-    var photoPath : String
+    var endAt : String?
+    var btnPressed: [String:Int]?
+    var photoPath : String?
     
 }
