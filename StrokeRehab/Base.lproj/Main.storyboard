@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="-623" y="382"/>
         </scene>
-        <!--View Controller-->
+        <!--Name View Controller-->
         <scene sceneID="7nu-32-Bra">
             <objects>
-                <viewController id="fct-j9-oJJ" sceneMemberID="viewController">
+                <viewController id="fct-j9-oJJ" customClass="NameViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dr4-3t-lof">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,6 +127,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSe-4z-5ig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-623" y="1802"/>
+        </scene>
+        <!--Mode View Controller-->
+        <scene sceneID="0pf-hO-XBG">
+            <objects>
+                <viewController id="KrT-Ma-g5n" customClass="ModeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v7q-Jn-XqI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="uot-yP-MnF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="klb-J3-hHR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="471" y="1888"/>
         </scene>
         <!--Home-->
         <scene sceneID="COe-4h-hvL">
@@ -182,21 +197,41 @@
         <!--Game-->
         <scene sceneID="f2l-8x-B6f">
             <objects>
-                <viewController id="IWx-l1-7nF" sceneMemberID="viewController">
+                <viewController id="IWx-l1-7nF" customClass="GameSelectViewController" customModule="StrokeRehab" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Ub-7U-ciC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This in in game" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgC-km-051">
-                                <rect key="frame" x="165" y="215" width="115" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="WRT-xP-PjK">
+                                <rect key="frame" x="0.0" y="393.5" width="414" height="109"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eXi-w4-l0u">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="98x-wc-F09"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Game One" buttonSize="large"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCl-PB-S9o">
+                                        <rect key="frame" x="0.0" y="69" width="414" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="kud-pf-abX"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Game Two" buttonSize="large"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4Am-S9-Sg9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4Am-S9-Sg9" firstAttribute="trailing" secondItem="WRT-xP-PjK" secondAttribute="trailing" id="4Zz-Y2-FhF"/>
+                            <constraint firstItem="WRT-xP-PjK" firstAttribute="centerX" secondItem="0Ub-7U-ciC" secondAttribute="centerX" id="Rig-O8-O7h"/>
+                            <constraint firstItem="WRT-xP-PjK" firstAttribute="centerY" secondItem="0Ub-7U-ciC" secondAttribute="centerY" id="Tlf-4J-CnR"/>
+                            <constraint firstItem="WRT-xP-PjK" firstAttribute="leading" secondItem="4Am-S9-Sg9" secondAttribute="leading" id="m4V-D9-2fk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Game" id="5cQ-AL-JdA"/>
                 </viewController>

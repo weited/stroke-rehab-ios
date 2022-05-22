@@ -1,22 +1,19 @@
 //
-//  HomeViewController.swift
+//  GameSelectViewController.swift
 //  StrokeRehab
 //
-//  Created by mobiledev on 7/5/2022.
+//  Created by mobiledev on 23/5/2022.
 //
 
 import UIKit
-import Firebase
-import FirebaseFirestoreSwift
 
-class HomeViewController: UIViewController {
+class GameSelectViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let db = Firestore.firestore()
-        print("\nINITIALIZED FIRESTORE APP \(db.app.name)\n")    }
+    }
     
 
     /*

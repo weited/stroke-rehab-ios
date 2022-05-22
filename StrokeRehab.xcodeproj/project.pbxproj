@@ -16,6 +16,10 @@
 		5C6C724B28256CEA00EF9E6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C6C724928256CEA00EF9E6E /* LaunchScreen.storyboard */; };
 		5C6C7253282573EB00EF9E6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C7252282573EB00EF9E6E /* HomeViewController.swift */; };
 		5C7CFF2D282595ED00EA9940 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C7CFF2C282595ED00EA9940 /* GoogleService-Info.plist */; };
+		5C8633B4283A9F00008BBE39 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8633B3283A9F00008BBE39 /* NameViewController.swift */; };
+		5C8633BA283AA50D008BBE39 /* GameSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8633B5283A9FFC008BBE39 /* GameSelectViewController.swift */; };
+		5C8633BB283AA56F008BBE39 /* ModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8633B6283AA28E008BBE39 /* ModeViewController.swift */; };
+		5C8633BE283AACE9008BBE39 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8633BD283AACE9008BBE39 /* Exercise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,10 @@
 		5C6C724C28256CEA00EF9E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C6C7252282573EB00EF9E6E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5C7CFF2C282595ED00EA9940 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5C8633B3283A9F00008BBE39 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		5C8633B5283A9FFC008BBE39 /* GameSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectViewController.swift; sourceTree = "<group>"; };
+		5C8633B6283AA28E008BBE39 /* ModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeViewController.swift; sourceTree = "<group>"; };
+		5C8633BD283AACE9008BBE39 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		F01280D8A4A3D74A724B93A9 /* Pods-StrokeRehab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrokeRehab.debug.xcconfig"; path = "Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,13 +88,25 @@
 				5C6C723E28256CE900EF9E6E /* AppDelegate.swift */,
 				5C6C724028256CE900EF9E6E /* SceneDelegate.swift */,
 				5C6C724228256CE900EF9E6E /* ViewController.swift */,
+				5C8633B3283A9F00008BBE39 /* NameViewController.swift */,
 				5C6C7252282573EB00EF9E6E /* HomeViewController.swift */,
+				5C8633BD283AACE9008BBE39 /* Exercise.swift */,
+				5C8633B5283A9FFC008BBE39 /* GameSelectViewController.swift */,
+				5C8633BC283AA580008BBE39 /* PrescribedGame */,
 				5C6C724428256CE900EF9E6E /* Main.storyboard */,
 				5C6C724728256CEA00EF9E6E /* Assets.xcassets */,
 				5C6C724928256CEA00EF9E6E /* LaunchScreen.storyboard */,
 				5C6C724C28256CEA00EF9E6E /* Info.plist */,
 			);
 			path = StrokeRehab;
+			sourceTree = "<group>";
+		};
+		5C8633BC283AA580008BBE39 /* PrescribedGame */ = {
+			isa = PBXGroup;
+			children = (
+				5C8633B6283AA28E008BBE39 /* ModeViewController.swift */,
+			);
+			name = PrescribedGame;
 			sourceTree = "<group>";
 		};
 		902605146C730A71B97DD5B3 /* Frameworks */ = {
@@ -214,9 +234,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C6C724328256CE900EF9E6E /* ViewController.swift in Sources */,
+				5C8633BE283AACE9008BBE39 /* Exercise.swift in Sources */,
 				5C6C723F28256CE900EF9E6E /* AppDelegate.swift in Sources */,
+				5C8633BA283AA50D008BBE39 /* GameSelectViewController.swift in Sources */,
 				5C6C724128256CE900EF9E6E /* SceneDelegate.swift in Sources */,
+				5C8633BB283AA56F008BBE39 /* ModeViewController.swift in Sources */,
 				5C6C7253282573EB00EF9E6E /* HomeViewController.swift in Sources */,
+				5C8633B4283A9F00008BBE39 /* NameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
