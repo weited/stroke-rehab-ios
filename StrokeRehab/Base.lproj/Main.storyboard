@@ -211,10 +211,10 @@
             </objects>
             <point key="canvasLocation" x="370" y="2077"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Goal View Controller-->
         <scene sceneID="cax-4X-q5u">
             <objects>
-                <viewController id="aH2-rb-InD" sceneMemberID="viewController">
+                <viewController id="aH2-rb-InD" customClass="GameGoalViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vkX-D0-Tw3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -260,7 +260,10 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0M3-Lv-cJY">
                                                 <rect key="frame" x="207" y="0.0" width="207" height="31"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Next"/>
+                                                <connections>
+                                                    <segue destination="YeF-p0-CWO" kind="show" identifier="goalToCustomize" id="1EK-yj-nFY"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -282,10 +285,31 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c29-Cx-OWq"/>
+                    <connections>
+                        <outlet property="labelTitle" destination="1ke-Rn-jjQ" id="fDU-5L-rXW"/>
+                        <outlet property="nextButton" destination="0M3-Lv-cJY" id="77h-6K-BP5"/>
+                        <outlet property="repePicker" destination="Qy9-Pe-SGc" id="SNb-X6-B25"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tua-1L-3aQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="302.89855072463769" y="2783.7053571428569"/>
+        </scene>
+        <!--Game Customize View Controller-->
+        <scene sceneID="Elc-5T-pmS">
+            <objects>
+                <viewController id="YeF-p0-CWO" customClass="GameCustomizeViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kEU-yM-zZb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rAa-So-on5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Okk-Sj-PPK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="48I-yx-ZX6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303" y="3495"/>
         </scene>
         <!--Home-->
         <scene sceneID="COe-4h-hvL">

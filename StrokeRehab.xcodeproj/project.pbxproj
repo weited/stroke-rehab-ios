@@ -23,6 +23,8 @@
 		5C8633C0283AB139008BBE39 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8633BF283AB139008BBE39 /* Movie.swift */; };
 		5C8633C2283AB4C0008BBE39 /* HistoryUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8633C1283AB4C0008BBE39 /* HistoryUITableViewCell.swift */; };
 		5C8633C4283AB8CE008BBE39 /* HistoryUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8633C3283AB8CE008BBE39 /* HistoryUITableViewController.swift */; };
+		5C93DBA7283F2864009E1DFF /* GameGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93DBA6283F2864009E1DFF /* GameGoalViewController.swift */; };
+		5C93DBA9283F3386009E1DFF /* GameCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93DBA8283F3386009E1DFF /* GameCustomizeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		5C8633BF283AB139008BBE39 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		5C8633C1283AB4C0008BBE39 /* HistoryUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUITableViewCell.swift; sourceTree = "<group>"; };
 		5C8633C3283AB8CE008BBE39 /* HistoryUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUITableViewController.swift; sourceTree = "<group>"; };
+		5C93DBA6283F2864009E1DFF /* GameGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGoalViewController.swift; sourceTree = "<group>"; };
+		5C93DBA8283F3386009E1DFF /* GameCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCustomizeViewController.swift; sourceTree = "<group>"; };
 		F01280D8A4A3D74A724B93A9 /* Pods-StrokeRehab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrokeRehab.debug.xcconfig"; path = "Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,7 +116,9 @@
 		5C8633BC283AA580008BBE39 /* PrescribedGame */ = {
 			isa = PBXGroup;
 			children = (
+				5C93DBA6283F2864009E1DFF /* GameGoalViewController.swift */,
 				5C8633B6283AA28E008BBE39 /* ModeViewController.swift */,
+				5C93DBA8283F3386009E1DFF /* GameCustomizeViewController.swift */,
 			);
 			name = PrescribedGame;
 			sourceTree = "<group>";
@@ -265,8 +271,10 @@
 				5C8633C0283AB139008BBE39 /* Movie.swift in Sources */,
 				5C6C723F28256CE900EF9E6E /* AppDelegate.swift in Sources */,
 				5C8633BA283AA50D008BBE39 /* GameSelectViewController.swift in Sources */,
+				5C93DBA7283F2864009E1DFF /* GameGoalViewController.swift in Sources */,
 				5C6C724128256CE900EF9E6E /* SceneDelegate.swift in Sources */,
 				5C8633BB283AA56F008BBE39 /* ModeViewController.swift in Sources */,
+				5C93DBA9283F3386009E1DFF /* GameCustomizeViewController.swift in Sources */,
 				5C6C7253282573EB00EF9E6E /* HomeViewController.swift in Sources */,
 				5C8633B4283A9F00008BBE39 /* NameViewController.swift in Sources */,
 			);
