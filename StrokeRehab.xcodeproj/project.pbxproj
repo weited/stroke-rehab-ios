@@ -26,6 +26,7 @@
 		5C8633C4283AB8CE008BBE39 /* HistoryUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8633C3283AB8CE008BBE39 /* HistoryUITableViewController.swift */; };
 		5C93DBA7283F2864009E1DFF /* GameGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93DBA6283F2864009E1DFF /* GameGoalViewController.swift */; };
 		5C93DBA9283F3386009E1DFF /* GameCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93DBA8283F3386009E1DFF /* GameCustomizeViewController.swift */; };
+		5CAA608E2842506700E8D176 /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA608D2842506700E8D176 /* GamePlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		5C8633C3283AB8CE008BBE39 /* HistoryUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUITableViewController.swift; sourceTree = "<group>"; };
 		5C93DBA6283F2864009E1DFF /* GameGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGoalViewController.swift; sourceTree = "<group>"; };
 		5C93DBA8283F3386009E1DFF /* GameCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCustomizeViewController.swift; sourceTree = "<group>"; };
+		5CAA608D2842506700E8D176 /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
 		F01280D8A4A3D74A724B93A9 /* Pods-StrokeRehab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrokeRehab.debug.xcconfig"; path = "Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				5C8633BC283AA580008BBE39 /* PrescribedGame */,
+				5CAA608D2842506700E8D176 /* GamePlayViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C8633C4283AB8CE008BBE39 /* HistoryUITableViewController.swift in Sources */,
+				5CAA608E2842506700E8D176 /* GamePlayViewController.swift in Sources */,
 				5C6C724328256CE900EF9E6E /* ViewController.swift in Sources */,
 				5C8633BE283AACE9008BBE39 /* Exercise.swift in Sources */,
 				5C8633C2283AB4C0008BBE39 /* HistoryUITableViewCell.swift in Sources */,

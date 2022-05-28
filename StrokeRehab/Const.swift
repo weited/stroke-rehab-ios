@@ -4,4 +4,5 @@
 //
 struct Const {
     static let goalToCustSegue = "goalToCustomize"
+    static let prescribedCustmToStartSegue = "preCustomToStart"
 }
