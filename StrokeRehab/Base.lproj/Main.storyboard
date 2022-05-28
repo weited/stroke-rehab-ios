@@ -293,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tua-1L-3aQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302.89855072463769" y="2783.7053571428569"/>
+            <point key="canvasLocation" x="371" y="2853"/>
         </scene>
         <!--Game Customize View Controller-->
         <scene sceneID="Elc-5T-pmS">
@@ -356,6 +356,18 @@
                                     <action selector="btnSizeSliderchanged:" destination="YeF-p0-CWO" eventType="valueChanged" id="fs3-9T-kxT"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n40-Bq-uSa">
+                                <rect key="frame" x="209" y="782" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NN-TO-QeM">
+                                <rect key="frame" x="99" y="782" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rAa-So-on5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -370,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48I-yx-ZX6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="302.89855072463769" y="3494.8660714285711"/>
+            <point key="canvasLocation" x="370" y="3597"/>
         </scene>
         <!--Home-->
         <scene sceneID="COe-4h-hvL">
