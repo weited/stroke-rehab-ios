@@ -14,7 +14,7 @@ class GameCustomizeViewController: UIViewController {
     var isBtnRandom : Bool = true
     var isBtnIndicator : Bool = true
     var btnNum : Int = 3
-    var btnSize : Int = 1
+    var btnSize : Int = 2
     
     let btnNumRange = ["2","3","4","5"]
     
