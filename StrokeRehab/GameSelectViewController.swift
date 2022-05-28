@@ -11,7 +11,7 @@ class GameSelectViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tabBarController?.tabBar.isHidden = false
         // Do any additional setup after loading the view.
     }
     

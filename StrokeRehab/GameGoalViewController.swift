@@ -18,17 +18,23 @@ class GameGoalViewController: UIViewController {
     
 
     var repNum : Int = 3
-    let repRange = ["2","3","4","5"]
+    let repRange = ["1","2","3","4","5","6","7","8","9","10"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        self.tabBarController?.tabBar.isHidden = true
         repePicker.dataSource = self
         repePicker.delegate = self
         
         repePicker.selectRow(1, inComponent: 0, animated: false)
+        
+        
         // Do any additional setup after loading the view.
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.tabBarController?.tabBar.isHidden = true/false
+//    }
     
 
     /*
@@ -38,10 +44,17 @@ class GameGoalViewController: UIViewController {
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let customizeUI = segue.destination as? GameCustomizeViewController
+        if segue.identifier == Const.goalToCustSegue
         {
+            if let customizeUI = segue.destination as? GameCustomizeViewController
+            {
             customizeUI.repeNum = repNum
+                
+            //https://stackoverflow.com/questions/35427102/hide-show-tab-bar-when-push-back-swift
+//            self.hidesBottomBarWhenPushed = true
+            }
         }
+
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
