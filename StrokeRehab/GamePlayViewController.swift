@@ -22,6 +22,8 @@ class GamePlayViewController: UIViewController {
     var currentBtn : Int = 1
     var round : Int = 0
     
+    var btnUIGroup : [UIButton] = []
+    var isOverlap : Bool = false
     
     @IBOutlet weak var btnAreaView: UIView!
     
@@ -38,15 +40,34 @@ class GamePlayViewController: UIViewController {
             print("size is \(width)")
 //            let button = UIButton(frame: CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50))
             
-            let button = UIButton(frame: CGRect(x:0, y:0, width: 50, height: 50))
-            button.backgroundColor = .green
+            let button = UIButton()
+
+            
             button.layer.cornerRadius = 25
-            button.setTitle("\(randomBtns[index-1])", for: .normal)
+            button.setTitle("\(index)", for: .normal)
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             button.tag = index
-
+            
             btnAreaView.addSubview(button)
+            
+            btnUIGroup.append(button)
+            
+            
         }
+        
+        print("is over lap before while? \(isOverlap)")
+        
+        // random button position first then check if overlap
+        repeat
+        {
+            print("before repeat? \(isOverlap)")
+            randomPosition()
+            checkBtnOverlap(btnGroup: btnUIGroup)
+            print("after repeat? \(isOverlap)")
+        }
+        while isOverlap == true
+        
+        
         
 
 
@@ -54,12 +75,71 @@ class GamePlayViewController: UIViewController {
     }
     
     @objc func buttonAction(sender: UIButton!) {
-        sender.backgroundColor = .blue
+        print("Button \(currentBtn)")
+        if sender.tag == currentBtn {
+            sender.backgroundColor = .blue
+            currentBtn += 1
+            
+            if currentBtn > btnNum {
+                randomPosition()
+                currentBtn = 1
+                
+            }
+        }
+        
         print("Button tapped\(sender.tag)")
 
 
     }
     
+    func checkBtnOverlap(btnGroup: [UIButton]) {
+//        for index in 1...btnNum {var button = btnAreaView.viewWithTag(index) as? UIButton}
+//        var isOverlap : Bool = false
+        for i in 0..<btnNum {
+            print("before iii: \(i) \(isOverlap)")
+            if isOverlap == true {
+                break
+                
+            } else {
+                for j in i+1..<btnNum {
+                    print("in jjjj: \(i) and \(j)  \(isOverlap)")
+                    if btnGroup[i].frame.intersects(btnGroup[j].frame) {
+                       
+                        isOverlap = true
+                        print("is over lap? \(isOverlap)")
+                        break
+                    }
+//                    else {
+//                        isOverlap = false
+//
+//                        print("is over lap f? \(isOverlap)")
+////                        continue
+//                    }
+                }
+            }
+
+        }
+    }
+    
+    func randomPosition() {
+        let height = btnAreaView!.frame.size.height - 50
+        let width = btnAreaView!.frame.size.width - 50
+        
+        for index in 1...btnNum {
+//            let button = btnAreaView.viewWithTag(index) as? UIButton
+            let button = btnUIGroup[index-1]
+            button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50)
+            if index == 1 {
+                button.backgroundColor = .red
+                
+            }
+            else {
+                button.backgroundColor = .green
+            }
+        }
+        print("inside random? \(isOverlap)")
+        isOverlap = false
+    }
 
     /*
     // MARK: - Navigation
