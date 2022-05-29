@@ -409,24 +409,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3R-0o-2wJ">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3R-0o-2wJ">
                                 <rect key="frame" x="20" y="156" width="374" height="657"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="657" id="XAj-pS-lCt"/>
-                                    <constraint firstAttribute="width" constant="374" id="fKE-wy-P0t"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6El-YA-jig"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="s3R-0o-2wJ" firstAttribute="bottom" secondItem="6El-YA-jig" secondAttribute="bottom" id="1pw-hs-01L"/>
-                            <constraint firstItem="6El-YA-jig" firstAttribute="trailing" secondItem="s3R-0o-2wJ" secondAttribute="trailing" constant="20" id="MlQ-Sk-ts7"/>
-                            <constraint firstItem="s3R-0o-2wJ" firstAttribute="leading" secondItem="6El-YA-jig" secondAttribute="leading" constant="20" id="OOP-N4-a46"/>
-                            <constraint firstItem="s3R-0o-2wJ" firstAttribute="centerX" secondItem="xUy-gR-4zC" secondAttribute="centerX" id="Uek-Bb-1Hp"/>
-                            <constraint firstItem="s3R-0o-2wJ" firstAttribute="top" secondItem="6El-YA-jig" secondAttribute="top" constant="68" id="mQ6-DC-eex"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="h2d-MU-nrx"/>
                     <connections>
@@ -543,6 +533,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

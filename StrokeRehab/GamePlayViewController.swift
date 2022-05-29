@@ -22,6 +22,7 @@ class GamePlayViewController: UIViewController {
     var currentBtn : Int = 1
     var round : Int = 0
     
+    
     @IBOutlet weak var btnAreaView: UIView!
     
     override func viewDidLoad() {
@@ -31,15 +32,20 @@ class GamePlayViewController: UIViewController {
         
         for index in 1...btnNum {
             btnAreaView.layoutIfNeeded()
-            let height = btnAreaView!.frame.size.height
-            let width = btnAreaView!.frame.size.width
-            let button = UIButton(frame: CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50))
+            let height = btnAreaView!.frame.size.height - 50
+            let width = btnAreaView!.frame.size.width - 50
+            print("size is \(height)")
+            print("size is \(width)")
+//            let button = UIButton(frame: CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50))
+            
+            let button = UIButton(frame: CGRect(x:0, y:0, width: 50, height: 50))
             button.backgroundColor = .green
+            button.layer.cornerRadius = 25
             button.setTitle("\(randomBtns[index-1])", for: .normal)
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             button.tag = index
 
-            self.view.addSubview(button)
+            btnAreaView.addSubview(button)
         }
         
 
@@ -50,8 +56,7 @@ class GamePlayViewController: UIViewController {
     @objc func buttonAction(sender: UIButton!) {
         sender.backgroundColor = .blue
         print("Button tapped\(sender.tag)")
-        print("size is \(self.view!.frame.height)")
-        print("size is \(self.view!.frame.width)")
+
 
     }
     
