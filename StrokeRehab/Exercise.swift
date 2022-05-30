@@ -64,10 +64,23 @@ public struct Exercise : Codable
     static func updateDocGameFinished(documentId id: String, isCompleted completed: Bool, endAt timeStamp: String) {
         let db = Firestore.firestore()
         let exerciseDocument = db.collection(Const.collectionName).document(id)
-        
         exerciseDocument.updateData([
             "completed" : completed,
             "endAt" : timeStamp,
+        ], completion: { (err) in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Successfully finished execrise!")
+            }
+        })
+    }
+    
+    static func addBtnPressedToDB(documentId id: String, btnPressed button: [String:Int]) {
+        let db = Firestore.firestore()
+        let exerciseDocument = db.collection(Const.collectionName).document(id)
+        exerciseDocument.updateData([
+            "btnPressed" : FieldValue.arrayUnion([button])
         ], completion: { (err) in
             if let err = err {
                 print("Error adding document: \(err)")

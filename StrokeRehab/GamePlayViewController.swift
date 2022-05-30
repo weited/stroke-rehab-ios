@@ -56,7 +56,7 @@ class GamePlayViewController: UIViewController {
         print("###############: \(Exercise.GoalType.repetition)")
         
         // create an empty document
-//        createGameDoc()
+        createGameDoc()
         
         //        let thisGame = Exercise(id: "tisisldk", repetition: 123, completed: false, startAt: "dafa", endAt: "da", btnPressed: ["2":2], photoPath: "fkafa")
         //
@@ -126,6 +126,9 @@ class GamePlayViewController: UIViewController {
     @objc func buttonAction(sender: UIButton!) {
         print("Button \(currentBtn)")
         print("Time is ############ \(getTimeStamp())")
+        
+        Exercise.addBtnPressedToDB(documentId: docId, btnPressed: [getTimeStamp():sender.tag])
+        
         if sender.tag == currentBtn {
             sender.setTitle("✓", for: .normal)
             sender.backgroundColor = .init(red: 0.647468, green: 0.840358, blue: 0.980702, alpha: 1)
