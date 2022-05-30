@@ -5,11 +5,11 @@
 
 import UIKit
 struct Const {
+    static let collectionName = "exercisesIOS"
     static let goalToCustSegue = "goalToCustomize"
     static let prescribedCustmToStartSegue = "preCustomToStart"
     static let gameToFinishedSegue = "gameToFinished"
-    static let collectionName = "exercisesIOS"
-    
+
     enum GoalType : String {
         case repetition
         case timeLimit

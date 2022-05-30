@@ -154,7 +154,7 @@ class GamePlayViewController: UIViewController {
             sender.backgroundColor = Const.BtnColors.normal
             if currentBtn < btnNum {
                 btnUIGroup[currentBtn].backgroundColor = Const.BtnColors.indicator
-                btnUIGroup[currentBtn].layer.borderColor = .init(gray: 2, alpha: 1)
+//                btnUIGroup[currentBtn].layer.borderColor = .init(gray: 2, alpha: 1)
             }
             currentBtn += 1
             
