@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestoreSwift
 
 class GamePlayViewController: UIViewController {
 
@@ -26,6 +28,9 @@ class GamePlayViewController: UIViewController {
     var btnUIGroup : [UIButton] = []
     var isOverlap : Bool = false
     
+    let db = Firestore.firestore()
+    
+    
     @IBOutlet weak var btnAreaView: UIView!
     
     override func viewDidLoad() {
@@ -33,6 +38,13 @@ class GamePlayViewController: UIViewController {
         
         self.docId = getTimeStamp(type: "gameId")
         print("colo is: \(docId)")
+        
+        // create an empty document
+//        createGameDoc()
+        
+        let thisGame = Exercise(id: "tisisldk", repetition: 123, completed: false, startAt: "dafa", endAt: "da", btnPressed: ["2":2], photoPath: "fkafa")
+        
+        thisGame.createGameDoc()
         
         for index in 1...btnNum {
             btnAreaView.layoutIfNeeded()
@@ -176,6 +188,31 @@ class GamePlayViewController: UIViewController {
         return formatter.string(from: Date.now)
     }
 
+    func createGameDoc() {
+        let exerciseCollection = db.collection(Const.collectionName)
+        let newGameDoc = Exercise(
+            id: docId,
+            repetition: repeNum,
+            completed: false,
+            startAt: getTimeStamp(),
+            endAt: "",
+            btnPressed: [String:Int](),
+            photoPath: ""
+        )
+        
+        do {
+            try exerciseCollection.document(docId).setData(from: newGameDoc, completion: { (err) in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Successfully created execrise!")
+                }
+            })
+            
+        } catch let error {
+            print("Error writing execrise to Firestore: \(error)")
+        }
+    }
     /*
     // MARK: - Navigation
 

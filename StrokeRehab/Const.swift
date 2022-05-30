@@ -6,4 +6,5 @@ struct Const {
     static let goalToCustSegue = "goalToCustomize"
     static let prescribedCustmToStartSegue = "preCustomToStart"
     static let gameToFinishedSegue = "gameToFinished"
+    static let collectionName = "exercises"
 }
