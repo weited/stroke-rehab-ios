@@ -7,7 +7,10 @@
 
 import UIKit
 
-class GameDoneViewController: UIViewController {
+class GameDoneViewController: UIViewController,
+                              UIImagePickerControllerDelegate,
+                              UINavigationControllerDelegate
+{
     
     var isFreeMode = false
     var gameGoalType = Exercise.GoalType.repetition.rawValue
@@ -28,6 +31,7 @@ class GameDoneViewController: UIViewController {
     @IBOutlet weak var goalTypeLabel: UILabel!
     @IBOutlet weak var repeNumLabel: UILabel!
     @IBOutlet weak var timeTakenLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +48,37 @@ class GameDoneViewController: UIViewController {
 //        Exercise.GoalType.repetition
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func uploadBtnTapped(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+        {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = true
+            
+            self.present(imagePicker, animated: true, completion: nil)
+            
+        } else {
+            print("PhotoLibrary error")
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,            didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+    {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        {
+        imageView.image = image
+            dismiss(animated: true, completion: nil)
+        }
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        dismiss(animated: true, completion: nil)
+    }
+
     
 
     /*

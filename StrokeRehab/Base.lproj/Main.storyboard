@@ -474,19 +474,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sw3-yJ-5UX">
-                                <rect key="frame" x="20" y="114" width="374" height="104"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sw3-yJ-5UX">
+                                <rect key="frame" x="20" y="100" width="374" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Congratulations! 
-You have finished the exercise. 
-You can now:
-Take a picture:</string>
+You have finished the exercise. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sdd-qh-h7W">
-                                <rect key="frame" x="20" y="266" width="374" height="263"/>
+                                <rect key="frame" x="20" y="177" width="374" height="263"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQm-Y2-lR9">
@@ -597,6 +595,19 @@ Take a picture:</string>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mvr-kD-Ehp">
+                                <rect key="frame" x="126" y="483" width="162" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Upload Picture"/>
+                                <connections>
+                                    <action selector="uploadBtnTapped:" destination="ITK-Fs-C2n" eventType="touchUpInside" id="HLB-lo-UwW"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-N8-R5o">
+                                <rect key="frame" x="81" y="557" width="253" height="248"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IdY-ZO-di5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -606,6 +617,7 @@ Take a picture:</string>
                         <outlet property="endTimeLabel" destination="4XJ-Od-aXI" id="aGi-0c-ULA"/>
                         <outlet property="gameModeLabel" destination="fY2-2X-wKe" id="hd4-Eh-l2m"/>
                         <outlet property="goalTypeLabel" destination="Yio-7l-RfP" id="q1p-03-bec"/>
+                        <outlet property="imageView" destination="JhQ-N8-R5o" id="i9y-Fa-2Dm"/>
                         <outlet property="repeNumLabel" destination="01n-0T-daO" id="miy-CE-9my"/>
                         <outlet property="startTimeLabel" destination="XOa-dK-pD9" id="Y75-E7-unp"/>
                         <outlet property="timeTakenLabel" destination="9ac-4M-Hfr" id="DWW-5z-pBW"/>
