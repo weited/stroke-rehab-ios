@@ -76,6 +76,9 @@ class GamePlayViewController: UIViewController {
             button.layer.cornerRadius = 25
             
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            button.addTarget(self, action: #selector(buttonDownAction), for: .touchDown)
+            button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpInside)
+            
             button.tag = index
             
             btnAreaView.addSubview(button)
@@ -123,23 +126,40 @@ class GamePlayViewController: UIViewController {
         
     }
     
+    @objc func buttonDownAction(sender: UIButton!) {
+        if sender.tag != currentBtn {
+            sender.setTitle("X", for: .normal)
+            sender.backgroundColor = Const.BtnColors.wrong
+        }
+    }
+    
+    @objc func buttonReleaseAction(sender: UIButton!) {
+        if sender.tag == currentBtn-1 {
+            sender.setTitle("✓", for: .normal)
+            sender.backgroundColor = Const.BtnColors.normal
+        } else {
+            sender.setTitle("\(sender.tag)", for: .normal)
+            sender.backgroundColor = Const.BtnColors.normal
+        }
+    }
+
+    
     @objc func buttonAction(sender: UIButton!) {
-        print("Button \(currentBtn)")
-        print("Time is ############ \(getTimeStamp())")
-        
+        print("Current Button \(currentBtn)")
+        print("Button tapped\(sender.tag)")
         Exercise.addBtnPressedToDB(documentId: docId, btnPressed: [getTimeStamp():sender.tag])
         
         if sender.tag == currentBtn {
             sender.setTitle("✓", for: .normal)
-            sender.backgroundColor = .init(red: 0.647468, green: 0.840358, blue: 0.980702, alpha: 1)
+            sender.backgroundColor = Const.BtnColors.normal
             if currentBtn < btnNum {
-                btnUIGroup[currentBtn].backgroundColor = .init(red: 1.02621, green: 0.864526, blue: 0.953756, alpha: 1)
+                btnUIGroup[currentBtn].backgroundColor = Const.BtnColors.indicator
                 btnUIGroup[currentBtn].layer.borderColor = .init(gray: 2, alpha: 1)
             }
             currentBtn += 1
             
+            // Completed a round, Reset first btn, increase rounds
             if currentBtn > btnNum {
-                
                 currentBtn = 1
                 roundDone += 1
                 
@@ -150,48 +170,32 @@ class GamePlayViewController: UIViewController {
                     return
                 }
                 
+                // Random position if btn overlap
                 repeat
                 {
                     randomPosition()
                     checkBtnOverlap(btnGroup: btnUIGroup)
                 }
                 while isOverlap == true
-                        
-                        
             }
         }
-        
-        print("Button tapped\(sender.tag)")
-        
-        
     }
     
     func checkBtnOverlap(btnGroup: [UIButton]) {
         //        for index in 1...btnNum {var button = btnAreaView.viewWithTag(index) as? UIButton}
         //        var isOverlap : Bool = false
+        print("is over lap? \(isOverlap)")
         for i in 0..<btnNum {
-            print("before iii: \(i) \(isOverlap)")
             if isOverlap == true {
                 break
-                
             } else {
                 for j in i+1..<btnNum {
-                    print("in jjjj: \(i) and \(j)  \(isOverlap)")
                     if btnGroup[i].frame.intersects(btnGroup[j].frame) {
-                        
                         isOverlap = true
-                        print("is over lap? \(isOverlap)")
                         break
                     }
-                    //                    else {
-                    //                        isOverlap = false
-                    //
-                    //                        print("is over lap f? \(isOverlap)")
-                    ////                        continue
-                    //                    }
                 }
             }
-            
         }
     }
     
@@ -205,19 +209,19 @@ class GamePlayViewController: UIViewController {
             button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50)
             button.setTitle("\(index)", for: .normal)
             if index == 1 {
-                button.backgroundColor = .init(red: 1.02621, green: 0.864526, blue: 0.953756, alpha: 1)
-                
+                button.backgroundColor = Const.BtnColors.indicator
             }
             else {
-                button.backgroundColor = .init(red: 0.647468, green: 0.840358, blue: 0.980702, alpha: 1)
+                button.backgroundColor = Const.BtnColors.normal
             }
         }
-        print("inside random? \(isOverlap)")
+        // reset overlap for check
         isOverlap = false
     }
     
     func getTimeStamp(format: String = "btn") -> String {
-        // https://www.hackingwithswift.com/example-code/system/how-to-convert-dates-and-times-to-a-string-using-dateformatter
+        /* https://www.hackingwithswift.com/example-code/system/how-to-convert-dates-and-times-to-a-string-using-dateformatter
+         */
         let formatter = DateFormatter()
         if format == "btn" {
             formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
