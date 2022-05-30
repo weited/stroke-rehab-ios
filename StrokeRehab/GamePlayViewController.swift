@@ -10,20 +10,23 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class GamePlayViewController: UIViewController {
-
+    
     var repeNum : Int = 1
     var isFreeMode : Bool = false
     var isBtnRandom : Bool = true
     var isBtnIndicator : Bool = true
     var btnNum : Int = 3
     var btnSize : Int = 2
-    var timeLimit : Int = 10
+    var timeLimit : Int = 0
     
     var docId : String = ""
+    var gameStartAt : String = ""
+    var gameEndAt : String = ""
+    var timeTakenForRepe : Int = 0
     
     var targetBtns : [Int] = [1,2,3]
     var randomBtns : [Int] = [2,1,3]
-
+    
     var currentBtn : Int = 1
     var roundDone : Int = 0
     
@@ -41,21 +44,22 @@ class GamePlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "New title"
+        //        self.title = "New title"
+        gameStartAt = getTimeStamp()
         
         timer.invalidate()
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerClass), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
         
         self.docId = getTimeStamp(format: "gameId")
         print("###############: \(Exercise.GoalType.repetition)")
         
         // create an empty document
-        createGameDoc()
+//        createGameDoc()
         
-//        let thisGame = Exercise(id: "tisisldk", repetition: 123, completed: false, startAt: "dafa", endAt: "da", btnPressed: ["2":2], photoPath: "fkafa")
-//
-//        thisGame.createGameDoc()
+        //        let thisGame = Exercise(id: "tisisldk", repetition: 123, completed: false, startAt: "dafa", endAt: "da", btnPressed: ["2":2], photoPath: "fkafa")
+        //
+        //        thisGame.createGameDoc()
         
         for index in 1...btnNum {
             btnAreaView.layoutIfNeeded()
@@ -63,13 +67,13 @@ class GamePlayViewController: UIViewController {
             let width = btnAreaView!.frame.size.width - 50
             print("size is \(height)")
             print("size is \(width)")
-//            let button = UIButton(frame: CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50))
+            //            let button = UIButton(frame: CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50))
             
             let button = UIButton()
-
+            
             
             button.layer.cornerRadius = 25
-           
+            
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             button.tag = index
             
@@ -94,17 +98,25 @@ class GamePlayViewController: UIViewController {
         
         
         
-
-
+        
+        
         // Do any additional setup after loading the view.
     }
     
-    @objc func timerClass() {
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
+        print("stop timer")
+    }
+    
+    @objc func timerForRepetition() {
+        timeTakenForRepe += 1
+        self.title = String(timeTakenForRepe)
+    }
+    
+    @objc func timerForTimeLimit() {
         timeLimit -= 1
         self.title = String(timeLimit)
-        
-        if(timeLimit == 0)
-        {
+        if timeLimit == 0 {
             timer.invalidate()
         }
         
@@ -129,10 +141,7 @@ class GamePlayViewController: UIViewController {
                 
                 // Finish Game and Nav to next UI
                 if roundDone == repeNum {
-                    
-                    Exercise.finishGame(documentId: docId, isCompleted: true, endAt: getTimeStamp())
-                    
-                    self.performSegue(withIdentifier: Const.gameToFinishedSegue, sender: nil)
+                    completeGame()
                     print("You finished!")
                     return
                 }
@@ -143,19 +152,19 @@ class GamePlayViewController: UIViewController {
                     checkBtnOverlap(btnGroup: btnUIGroup)
                 }
                 while isOverlap == true
-                
-                
+                        
+                        
             }
         }
         
         print("Button tapped\(sender.tag)")
-
-
+        
+        
     }
     
     func checkBtnOverlap(btnGroup: [UIButton]) {
-//        for index in 1...btnNum {var button = btnAreaView.viewWithTag(index) as? UIButton}
-//        var isOverlap : Bool = false
+        //        for index in 1...btnNum {var button = btnAreaView.viewWithTag(index) as? UIButton}
+        //        var isOverlap : Bool = false
         for i in 0..<btnNum {
             print("before iii: \(i) \(isOverlap)")
             if isOverlap == true {
@@ -165,20 +174,20 @@ class GamePlayViewController: UIViewController {
                 for j in i+1..<btnNum {
                     print("in jjjj: \(i) and \(j)  \(isOverlap)")
                     if btnGroup[i].frame.intersects(btnGroup[j].frame) {
-                       
+                        
                         isOverlap = true
                         print("is over lap? \(isOverlap)")
                         break
                     }
-//                    else {
-//                        isOverlap = false
-//
-//                        print("is over lap f? \(isOverlap)")
-////                        continue
-//                    }
+                    //                    else {
+                    //                        isOverlap = false
+                    //
+                    //                        print("is over lap f? \(isOverlap)")
+                    ////                        continue
+                    //                    }
                 }
             }
-
+            
         }
     }
     
@@ -187,7 +196,7 @@ class GamePlayViewController: UIViewController {
         let width = btnAreaView!.frame.size.width - 50
         
         for index in 1...btnNum {
-//            let button = btnAreaView.viewWithTag(index) as? UIButton
+            //            let button = btnAreaView.viewWithTag(index) as? UIButton
             let button = btnUIGroup[index-1]
             button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50)
             button.setTitle("\(index)", for: .normal)
@@ -213,26 +222,52 @@ class GamePlayViewController: UIViewController {
         }
         return formatter.string(from: Date.now)
     }
-
+    
     func createGameDoc() {
-//        let exerciseCollection = db.collection(Const.collectionName)
+        //        let exerciseCollection = db.collection(Const.collectionName)
         let newGameDoc = Exercise(
             id: docId,
             repetition: repeNum,
             completed: false,
-            startAt: getTimeStamp(),
+            startAt: gameStartAt,
             btnPressed: [String:Int]()
         )
         newGameDoc.createExerciseDoc()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func completeGame() {
+        gameEndAt = getTimeStamp()
+        Exercise.updateDocGameFinished(documentId: docId, isCompleted: true, endAt: gameEndAt)
+        
+        self.performSegue(withIdentifier: Const.gameToFinishedSegue, sender: nil)
     }
-    */
-
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // Get the new view controller using segue.destination.
+    // Pass the selected object to the new view controller.
+        if segue.identifier == Const.gameToFinishedSegue
+        {
+            if let gameFinishedScreen = segue.destination as? GameDoneViewController
+            {
+                gameFinishedScreen.isFreeMode = self.isFreeMode
+                gameFinishedScreen.gameGoalType = self.goalType
+                gameFinishedScreen.gameStartAt = self.gameStartAt
+                gameFinishedScreen.gameEndAt = self.gameEndAt
+                gameFinishedScreen.repeNumber = self.repeNum
+                gameFinishedScreen.timeLimit = self.timeLimit
+                gameFinishedScreen.timeTakenForRepe = self.timeTakenForRepe
+                gameFinishedScreen.repeNumForTimeLimit = self.roundDone
+            }
+        }
+    }
+    
 }

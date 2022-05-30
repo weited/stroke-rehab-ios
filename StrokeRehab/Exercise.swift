@@ -56,7 +56,7 @@ public struct Exercise : Codable
         }
     }
     
-    static func finishGame(documentId id: String, isCompleted completed: Bool, endAt timeStamp: String) {
+    static func updateDocGameFinished(documentId id: String, isCompleted completed: Bool, endAt timeStamp: String) {
         let db = Firestore.firestore()
         let exerciseDocument = db.collection(Const.collectionName).document(id)
         

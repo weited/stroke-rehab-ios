@@ -8,10 +8,35 @@
 import UIKit
 
 class GameDoneViewController: UIViewController {
+    
+    var isFreeMode = false
+    var gameGoalType = Exercise.GoalType.repetition.rawValue
+    var gameStartAt : String = ""
+    var gameEndAt : String = ""
+    var repeNumber : Int = 0
+    var timeLimit : Int = 0
+    var timeTakenForRepe : Int = 0
+    var repeNumForTimeLimit : Int = 0
+    
+//    var gameFinishInfor = [String:Any]()
 
+    @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var endTimeLabel: UILabel!
+    @IBOutlet weak var gameModeLabel: UILabel!
+    @IBOutlet weak var goalTypeLabel: UILabel!
+    @IBOutlet weak var repeNumLabel: UILabel!
+    @IBOutlet weak var timeTakenLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        startTimeLabel.text = gameStartAt
+        endTimeLabel.text = gameEndAt
+        gameModeLabel.text = isFreeMode ? "Free Mode" : "Goal Mode"
+        goalTypeLabel.text = gameGoalType == Const.GoalType.repetition.rawValue ? "\(repeNumber)   Repetitions" : "\(timeLimit) Seconds Time Limit"
+        repeNumLabel.text = String(repeNumber)
+        timeTakenLabel.text = String(timeTakenForRepe)
+        
 //        Exercise.GoalType.repetition
         // Do any additional setup after loading the view.
     }
