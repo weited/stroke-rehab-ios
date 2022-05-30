@@ -49,6 +49,8 @@ class GameDoneViewController: UIViewController,
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
+    }
     
     @IBAction func uploadBtnTapped(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
