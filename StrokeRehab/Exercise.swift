@@ -19,20 +19,30 @@ public struct Exercise : Codable
     
     var id : String
     var repetition : Int
-    var completed : Bool
+    var completed : Bool = false
     var startAt : String
-    var endAt : String?
-    var btnPressed: [String:Int]?
-    var photoPath : String?
+    var endAt : String = ""
+    var btnPressed: [String:Int] = [:]
+    var photoPath : String = ""
+//    var goal : GoalType = GoalType.repetition
     
-    func createGameDoc() {
+    enum GoalType : String {
+        case repetition
+        case timeLimit
+    }
+    
+    func createExerciseDoc() {
         let db = Firestore.firestore()
         let exerciseCollection = db.collection(Const.collectionName)
 
         do {
             try exerciseCollection.document(self.id).setData([
+                "id" : self.id,
                 "repetition" : self.repetition,
-                "completed" : self.completed
+                "completed" : self.completed,
+                "startAt" : self.startAt,
+                "endAt" : self.endAt,
+                "btnPressed" : btnPressed,
             ], completion: { (err) in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -44,6 +54,22 @@ public struct Exercise : Codable
         } catch let error {
             print("Error writing execrise to Firestore: \(error)")
         }
+    }
+    
+    static func finishGame(documentId id: String, isCompleted completed: Bool, endAt timeStamp: String) {
+        let db = Firestore.firestore()
+        let exerciseDocument = db.collection(Const.collectionName).document(id)
+        
+        exerciseDocument.updateData([
+            "completed" : completed,
+            "endAt" : timeStamp,
+        ], completion: { (err) in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Successfully finished execrise!")
+            }
+        })
     }
     
 }

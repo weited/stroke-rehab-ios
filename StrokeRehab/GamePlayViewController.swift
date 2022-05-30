@@ -17,16 +17,21 @@ class GamePlayViewController: UIViewController {
     var isBtnIndicator : Bool = true
     var btnNum : Int = 3
     var btnSize : Int = 2
+    var timeLimit : Int = 10
+    
     var docId : String = ""
     
     var targetBtns : [Int] = [1,2,3]
     var randomBtns : [Int] = [2,1,3]
 
     var currentBtn : Int = 1
-    var round : Int = 0
+    var roundDone : Int = 0
     
     var btnUIGroup : [UIButton] = []
     var isOverlap : Bool = false
+    
+    var goalType : String = Exercise.GoalType.repetition.rawValue
+    var timer = Timer()
     
     let db = Firestore.firestore()
     
@@ -36,15 +41,21 @@ class GamePlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.docId = getTimeStamp(type: "gameId")
-        print("colo is: \(docId)")
+        self.title = "New title"
+        
+        timer.invalidate()
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerClass), userInfo: nil, repeats: true)
+        
+        self.docId = getTimeStamp(format: "gameId")
+        print("###############: \(Exercise.GoalType.repetition)")
         
         // create an empty document
-//        createGameDoc()
+        createGameDoc()
         
-        let thisGame = Exercise(id: "tisisldk", repetition: 123, completed: false, startAt: "dafa", endAt: "da", btnPressed: ["2":2], photoPath: "fkafa")
-        
-        thisGame.createGameDoc()
+//        let thisGame = Exercise(id: "tisisldk", repetition: 123, completed: false, startAt: "dafa", endAt: "da", btnPressed: ["2":2], photoPath: "fkafa")
+//
+//        thisGame.createGameDoc()
         
         for index in 1...btnNum {
             btnAreaView.layoutIfNeeded()
@@ -88,6 +99,17 @@ class GamePlayViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @objc func timerClass() {
+        timeLimit -= 1
+        self.title = String(timeLimit)
+        
+        if(timeLimit == 0)
+        {
+            timer.invalidate()
+        }
+        
+    }
+    
     @objc func buttonAction(sender: UIButton!) {
         print("Button \(currentBtn)")
         print("Time is ############ \(getTimeStamp())")
@@ -103,9 +125,13 @@ class GamePlayViewController: UIViewController {
             if currentBtn > btnNum {
                 
                 currentBtn = 1
-                round += 1
+                roundDone += 1
                 
-                if round == repeNum {
+                // Finish Game and Nav to next UI
+                if roundDone == repeNum {
+                    
+                    Exercise.finishGame(documentId: docId, isCompleted: true, endAt: getTimeStamp())
+                    
                     self.performSegue(withIdentifier: Const.gameToFinishedSegue, sender: nil)
                     print("You finished!")
                     return
@@ -177,10 +203,10 @@ class GamePlayViewController: UIViewController {
         isOverlap = false
     }
     
-    func getTimeStamp(type: String = "btn") -> String {
+    func getTimeStamp(format: String = "btn") -> String {
         // https://www.hackingwithswift.com/example-code/system/how-to-convert-dates-and-times-to-a-string-using-dateformatter
         let formatter = DateFormatter()
-        if type == "btn" {
+        if format == "btn" {
             formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         } else {
             formatter.dateFormat = "yyyyMMddHHmmss"
@@ -189,29 +215,15 @@ class GamePlayViewController: UIViewController {
     }
 
     func createGameDoc() {
-        let exerciseCollection = db.collection(Const.collectionName)
+//        let exerciseCollection = db.collection(Const.collectionName)
         let newGameDoc = Exercise(
             id: docId,
             repetition: repeNum,
             completed: false,
             startAt: getTimeStamp(),
-            endAt: "",
-            btnPressed: [String:Int](),
-            photoPath: ""
+            btnPressed: [String:Int]()
         )
-        
-        do {
-            try exerciseCollection.document(docId).setData(from: newGameDoc, completion: { (err) in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Successfully created execrise!")
-                }
-            })
-            
-        } catch let error {
-            print("Error writing execrise to Firestore: \(error)")
-        }
+        newGameDoc.createExerciseDoc()
     }
     /*
     // MARK: - Navigation

@@ -12,6 +12,7 @@ class GameDoneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        Exercise.GoalType.repetition
         // Do any additional setup after loading the view.
     }
     
