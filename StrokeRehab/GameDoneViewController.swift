@@ -18,7 +18,9 @@ class GameDoneViewController: UIViewController {
     var timeTakenForRepe : Int = 0
     var repeNumForTimeLimit : Int = 0
     
-//    var gameFinishInfor = [String:Any]()
+    var gameFinishInfor : Exercise?
+    
+
 
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
@@ -30,9 +32,11 @@ class GameDoneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let freeMode = self.gameFinishInfor!.isFreeMode
+        
         startTimeLabel.text = gameStartAt
         endTimeLabel.text = gameEndAt
-        gameModeLabel.text = isFreeMode ? "Free Mode" : "Goal Mode"
+        gameModeLabel.text = freeMode ? "Free Mode" : "Goal Mode"
         goalTypeLabel.text = gameGoalType == Const.GoalType.repetition.rawValue ? "\(repeNumber)   Repetitions" : "\(timeLimit) Seconds Time Limit"
         repeNumLabel.text = String(repeNumber)
         timeTakenLabel.text = String(timeTakenForRepe)

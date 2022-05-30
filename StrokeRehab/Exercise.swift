@@ -17,9 +17,14 @@ public struct Exercise : Codable
 //    var duration:Float
     
     
-    var id : String
-    var repetition : Int
+    var id : String?
+    var isFreeMode : Bool = false
+    var gameGoalType : String = Const.GoalType.repetition.rawValue
+    var repetition : Int = 0
+    var timeLimit : Int = 0
     var completed : Bool = false
+    var roundsDone : Int = 0
+    var timeTakenForRepe : Int = 0
     var startAt : String
     var endAt : String = ""
     var btnPressed: [String:Int] = [:]
@@ -36,7 +41,7 @@ public struct Exercise : Codable
         let exerciseCollection = db.collection(Const.collectionName)
 
         do {
-            try exerciseCollection.document(self.id).setData([
+            try exerciseCollection.document(self.id!).setData([
                 "id" : self.id,
                 "repetition" : self.repetition,
                 "completed" : self.completed,

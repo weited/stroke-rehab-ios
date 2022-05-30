@@ -18,6 +18,7 @@ class GamePlayViewController: UIViewController {
     var btnNum : Int = 3
     var btnSize : Int = 2
     var timeLimit : Int = 0
+    var isCompleted : Bool = false
     
     var docId : String = ""
     var gameStartAt : String = ""
@@ -258,6 +259,17 @@ class GamePlayViewController: UIViewController {
         {
             if let gameFinishedScreen = segue.destination as? GameDoneViewController
             {
+                let gameInfor = Exercise(
+                    isFreeMode: self.isFreeMode,
+                    gameGoalType: self.goalType,
+                    repetition: self.repeNum,
+                    timeLimit: self.timeLimit,
+                    completed: self.isCompleted,
+                    roundsDone: self.roundDone,
+                    timeTakenForRepe: self.timeTakenForRepe,
+                    startAt: self.gameStartAt,
+                    endAt: self.gameEndAt)
+                gameFinishedScreen.gameFinishInfor = gameInfor
                 gameFinishedScreen.isFreeMode = self.isFreeMode
                 gameFinishedScreen.gameGoalType = self.goalType
                 gameFinishedScreen.gameStartAt = self.gameStartAt
