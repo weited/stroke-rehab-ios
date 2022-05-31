@@ -13,8 +13,8 @@ struct Const {
     static let historyDetailCell = "historyDetailTableViewCell"
 
     enum GoalType : String {
-        case repetition
-        case timeLimit
+        case repetition = "Repetition"
+        case timeLimit = "Time Limit"
     }
     
     struct BtnColors {

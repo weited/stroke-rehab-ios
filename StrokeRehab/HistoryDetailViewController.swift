@@ -11,8 +11,10 @@ class HistoryDetailViewController: UIViewController {
 
     var exercise : Exercise?
     var exerciseIndex : Int?
-    var btnPressedArry = [[String : Int]]()
+    var btnPressedArry = [[String : String]]()
     
+    @IBOutlet weak var goalTypeLabel: UILabel!
+    @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var totalPressedNumLabel: UILabel!
     @IBOutlet weak var repeDoneLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -30,6 +32,8 @@ class HistoryDetailViewController: UIViewController {
             let totalPressedNum = displayExercise.btnPressed.count
             repeDoneLabel.text = String(displayExercise.repetition)
             totalPressedNumLabel.text = String(totalPressedNum)
+            goalTypeLabel.text = displayExercise.gameGoalType
+            goalLabel.text = "\(displayExercise.repetition)    Repetitions"
         }
     }
     
@@ -67,16 +71,18 @@ extension HistoryDetailViewController: UITableViewDataSource {
         //get the movie for this row
         let button = btnPressedArry[indexPath.row]
         
-        if let btn = button.first {
+        
+//        if let btn = button.first {
 //            cell.textLabel?.text = btn.key
-            let seqLabel = cell.viewWithTag(1) as? UILabel
-            let timeLabel = cell.viewWithTag(2) as? UILabel
-            let numPsdButton = cell.viewWithTag(3) as? UIButton
-            seqLabel?.text = String(indexPath.row+1)
-            timeLabel?.text = String(btn.key)
-            numPsdButton?.setTitle("\(btn.value)", for: .normal)
-            numPsdButton?.layer.cornerRadius = 36
-        }
+        let seqLabel = cell.viewWithTag(1) as? UILabel
+        let timeLabel = cell.viewWithTag(2) as? UILabel
+        let numPsdButton = cell.viewWithTag(3) as? UIButton
+        seqLabel?.text = String(indexPath.row+1)
+        timeLabel?.text = button["time"]
+        numPsdButton?.setTitle("\(button["btn"]!)", for: .normal)
+        if button["check"] == "true" {numPsdButton?.tintColor = .red}
+        //            numPsdButton?.layer.cornerRadius = 36
+//        }
         
 //        if let time = button.keys.first {
 //            cell.textLabel?.text = time

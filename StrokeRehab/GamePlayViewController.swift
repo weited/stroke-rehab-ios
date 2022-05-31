@@ -52,12 +52,9 @@ class GamePlayViewController: UIViewController {
         
         gameStartAt = getTimeStamp()
         
-        timer.invalidate()
-        
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
+//        timer.invalidate()
         
         self.docId = getTimeStamp(format: "gameId")
-        print("###############: \(Exercise.GoalType.repetition)")
         
         // create an empty document
         createGameDoc()
@@ -68,16 +65,13 @@ class GamePlayViewController: UIViewController {
             let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
             
             let eachHeight = height/CGFloat(btnNum)
-            print("size is \(height)")
-            print("size is \(width)")
-            //            let button = UIButton(frame: CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50))
             
             let button = UIButton()
             button.frame = CGRect(x: Int(width/2), y: Int(eachHeight) * index - Int(eachHeight)/2, width: btnSize, height: btnSize)
             button.layer.cornerRadius = CGFloat(btnSize/2)
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             button.addTarget(self, action: #selector(buttonDownAction), for: .touchDown)
-            button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpInside)
+            button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpOutside)
             button.tag = index
             btnAreaView.addSubview(button)
             btnUIGroup.append(button)
@@ -85,22 +79,18 @@ class GamePlayViewController: UIViewController {
 
         resetBtn()
         // random button position first then check if overlap
-        if isBtnRandom {
-            reorderBtnPosition()
-        }
-       
-//        repeat
-//        {
-//            randomPosition()
-//            checkBtnOverlap(btnGroup: btnUIGroup)
-//        }
-//        while isOverlap == true
-        // Do any additional setup after loading the view.
+        if isBtnRandom { reorderBtnPosition() }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         timer.invalidate()
         print("stop timer")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("did appear")
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
     }
     
     @objc func timerForRepetition() {
@@ -114,10 +104,10 @@ class GamePlayViewController: UIViewController {
         if timeLimit == 0 {
             timer.invalidate()
         }
-        
     }
     
     @objc func buttonDownAction(sender: UIButton!) {
+        print("Touch Down Action \(sender.tag)")
         if sender.tag != currentBtn {
             sender.setTitle("X", for: .normal)
             sender.backgroundColor = Const.BtnColors.wrong
@@ -125,6 +115,7 @@ class GamePlayViewController: UIViewController {
     }
     
     @objc func buttonReleaseAction(sender: UIButton!) {
+        print("ReleaseAction \(sender.tag)")
         if sender.tag == currentBtn-1 {
             sender.setTitle("✓", for: .normal)
             sender.backgroundColor = Const.BtnColors.normal
@@ -135,16 +126,16 @@ class GamePlayViewController: UIViewController {
     }
     
     @objc func buttonAction(sender: UIButton!) {
-        print("Current Button \(currentBtn)")
         print("Button tapped\(sender.tag)")
-        Exercise.addBtnPressedToDB(documentId: docId, btnPressed: [getTimeStamp():sender.tag])
+        Exercise.addBtnPressedToDB(documentId: docId, btnPressed: ["time" : getTimeStamp(), "btn":String(sender.tag),"check":"true"])
+        var pressCheck = "false"
         
         if sender.tag == currentBtn {
+            pressCheck = "true"
             sender.setTitle("✓", for: .normal)
             sender.backgroundColor = Const.BtnColors.normal
             if isBtnIndicator == true && currentBtn < btnNum {
                 btnUIGroup[currentBtn].backgroundColor = Const.BtnColors.indicator
-//                btnUIGroup[currentBtn].layer.borderColor = .init(gray: 2, alpha: 1)
             }
             currentBtn += 1
             
@@ -165,7 +156,11 @@ class GamePlayViewController: UIViewController {
                 // random button position
                 if isBtnRandom { reorderBtnPosition() }
             }
+        } else {
+            sender.setTitle("\(sender.tag)", for: .normal)
+            sender.backgroundColor = Const.BtnColors.normal
         }
+        Exercise.addBtnPressedToDB(documentId: docId, btnPressed: ["time" : getTimeStamp(), "btn":String(sender.tag),"check":pressCheck])
     }
     
     func resetBtn() {
@@ -183,9 +178,11 @@ class GamePlayViewController: UIViewController {
         }
     }
     
-    func checkBtnOverlap(btnGroup: [UIButton]) {
+    func checkBtnOverlap(btnGroup: [UIButton]) -> Bool {
         //        for index in 1...btnNum {var button = btnAreaView.viewWithTag(index) as? UIButton}
         //        var isOverlap : Bool = false
+        // reset overlap for check
+        isOverlap = false
         print("is over lap? \(isOverlap)")
         for i in 0..<btnNum {
             if isOverlap == true {
@@ -199,6 +196,7 @@ class GamePlayViewController: UIViewController {
                 }
             }
         }
+        return isOverlap
     }
     
     func randomPosition() {
@@ -217,8 +215,6 @@ class GamePlayViewController: UIViewController {
 //                button.backgroundColor = Const.BtnColors.normal
 //            }
         }
-        // reset overlap for check
-        isOverlap = false
     }
     
     func reorderBtnPosition() {
@@ -243,13 +239,14 @@ class GamePlayViewController: UIViewController {
     }
     
     func createGameDoc() {
-        //        let exerciseCollection = db.collection(Const.collectionName)
         let newGameDoc = Exercise(
             id: docId,
+            isFreeMode: isFreeMode,
+            gameGoalType: goalType,
             repetition: repeNum,
             completed: false,
             startAt: gameStartAt,
-            btnPressed: [[String:Int]]()
+            btnPressed: [[String:String]]()
         )
         newGameDoc.createExerciseDoc()
     }

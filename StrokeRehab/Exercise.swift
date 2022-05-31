@@ -27,7 +27,7 @@ public struct Exercise : Codable
     var timeTakenForRepe : Int? = 0
     var startAt : String
     var endAt : String? = ""
-    var btnPressed: [[String:Int]] = [[:]]
+    var btnPressed: [[String:String]] = [[:]]
 //    var photoPath : String = ""
 //    var goal : GoalType = GoalType.repetition
     
@@ -43,6 +43,8 @@ public struct Exercise : Codable
         do {
             try exerciseCollection.document(self.id!).setData([
                 "id" : self.id,
+                "isFreeMode" : self.isFreeMode,
+                "gameGoalType" : gameGoalType,
                 "repetition" : self.repetition,
                 "completed" : self.completed,
                 "startAt" : self.startAt,
@@ -76,7 +78,7 @@ public struct Exercise : Codable
         })
     }
     
-    static func addBtnPressedToDB(documentId id: String, btnPressed button: [String:Int]) {
+    static func addBtnPressedToDB(documentId id: String, btnPressed button: [String:Any]) {
         let db = Firestore.firestore()
         let exerciseDocument = db.collection(Const.collectionName).document(id)
         exerciseDocument.updateData([
