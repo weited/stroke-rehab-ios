@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1CC719F74ABB4743AE230A27 /* Pods_StrokeRehab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D7F79CB98BF7CDB85FB6C4 /* Pods_StrokeRehab.framework */; };
+		5C18CF762845E710005CA85F /* HistoryUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18CF752845E710005CA85F /* HistoryUIViewController.swift */; };
 		5C2BE8302841E3CE008DA80E /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2BE82F2841E3CE008DA80E /* Const.swift */; };
 		5C4DC19D2843FB7E005FDBFE /* GameDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DC19C2843FB7E005FDBFE /* GameDoneViewController.swift */; };
 		5C6C723F28256CE900EF9E6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6C723E28256CE900EF9E6E /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		30C413FF9B311D92AE0B798B /* Pods-StrokeRehab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrokeRehab.release.xcconfig"; path = "Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab.release.xcconfig"; sourceTree = "<group>"; };
 		41D7F79CB98BF7CDB85FB6C4 /* Pods_StrokeRehab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StrokeRehab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C18CF752845E710005CA85F /* HistoryUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUIViewController.swift; sourceTree = "<group>"; };
 		5C2BE82F2841E3CE008DA80E /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		5C4DC19C2843FB7E005FDBFE /* GameDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDoneViewController.swift; sourceTree = "<group>"; };
 		5C6C723B28256CE900EF9E6E /* StrokeRehab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrokeRehab.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +147,7 @@
 			children = (
 				5C8633BC283AA580008BBE39 /* PrescribedGame */,
 				5CAA608D2842506700E8D176 /* GamePlayViewController.swift */,
+				5C18CF752845E710005CA85F /* HistoryUIViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				5C8633BB283AA56F008BBE39 /* ModeViewController.swift in Sources */,
 				5C93DBA9283F3386009E1DFF /* GameCustomizeViewController.swift in Sources */,
 				5C6C7253282573EB00EF9E6E /* HomeViewController.swift in Sources */,
+				5C18CF762845E710005CA85F /* HistoryUIViewController.swift in Sources */,
 				5C8633B4283A9F00008BBE39 /* NameViewController.swift in Sources */,
 				5C2BE8302841E3CE008DA80E /* Const.swift in Sources */,
 			);
