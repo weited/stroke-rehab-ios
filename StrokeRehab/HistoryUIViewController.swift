@@ -12,23 +12,28 @@ import FirebaseFirestoreSwift
 class HistoryUIViewController: UIViewController {
 
     var exercises = [Exercise]()
-        
+    var numOfExercises : Int = 0
+    var totalPressed : Int = 0
+    
+    @IBOutlet weak var totalAtmptLabel: UIButton!
+    @IBOutlet weak var totalBtnLabel: UIButton!
     @IBOutlet weak var historyTableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("inside DidLoad \(numOfExercises)")
         // Do any additional setup after loading the view.
         historyTableView.dataSource = self
-//        fetchHistory()
+        
+        fetchHistory()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fetchHistory()
     }
-    
+        
     func fetchHistory() {
         let db = Firestore.firestore()
         let exerciseCollection = db.collection(Const.collectionName)
@@ -58,11 +63,23 @@ class HistoryUIViewController: UIViewController {
                             print("Error decoding exercise: \(error)")
                     }
                 }
-                
+                self.afterFetch()
+                print("inside data \(self.numOfExercises)")
                 //NOTE THE ADDITION OF THIS LINE
                 self.historyTableView.reloadData()
             }
         }
+    }
+    
+    func afterFetch() {
+        self.numOfExercises = self.exercises.count
+        
+        for btn in exercises {
+            totalPressed += btn.btnPressed.count
+        }
+        
+        totalAtmptLabel.setTitle("\(numOfExercises)", for: .normal)
+        totalBtnLabel.setTitle("\(totalPressed)", for: .normal)
     }
     
 

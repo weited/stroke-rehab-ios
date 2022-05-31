@@ -10,6 +10,7 @@ struct Const {
     static let prescribedCustmToStartSegue = "preCustomToStart"
     static let gameToFinishedSegue = "gameToFinished"
     static let showHistoryDetailSegue = "showHistoryDetailSegue"
+    static let historyDetailCell = "historyDetailTableViewCell"
 
     enum GoalType : String {
         case repetition
