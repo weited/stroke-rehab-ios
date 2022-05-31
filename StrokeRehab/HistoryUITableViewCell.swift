@@ -10,8 +10,8 @@ import UIKit
 class HistoryUITableViewCell: UITableViewCell {
 
     @IBOutlet weak var repeLabel: UILabel!
-    @IBOutlet weak var startLabel: UILabel!
-    @IBOutlet weak var endLabel: UILabel!
+    @IBOutlet weak var startAtLabel: UILabel!
+    @IBOutlet weak var endAtLabel: UILabel!
     
     
     override func awakeFromNib() {

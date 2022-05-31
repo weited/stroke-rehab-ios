@@ -77,6 +77,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="endAtLabel" destination="I30-4e-4u2" id="z1X-nm-aMg"/>
+                                            <outlet property="repeLabel" destination="1ka-xC-BDO" id="2ci-tf-AeL"/>
+                                            <outlet property="startAtLabel" destination="WDh-hG-5jW" id="lPd-UK-1zb"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -130,10 +135,7 @@
                     <navigationItem key="navigationItem" id="Nm4-aE-wPO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="HistoryTableView" destination="8IU-RZ-iuZ" id="EQK-3R-CCK"/>
-                        <outlet property="endAtLabel" destination="I30-4e-4u2" id="bEU-A7-mdU"/>
-                        <outlet property="repeNumLabel" destination="1ka-xC-BDO" id="SRd-jU-EpY"/>
-                        <outlet property="startAtLabel" destination="WDh-hG-5jW" id="fCz-1V-jIX"/>
+                        <outlet property="historyTableView" destination="8IU-RZ-iuZ" id="9eJ-cH-ivV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tb8-oo-pWg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
