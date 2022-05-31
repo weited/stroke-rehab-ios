@@ -75,7 +75,7 @@ extension HistoryDetailViewController: UITableViewDataSource {
             seqLabel?.text = String(indexPath.row+1)
             timeLabel?.text = String(btn.key)
             numPsdButton?.setTitle("\(btn.value)", for: .normal)
-            numPsdButton?.
+            numPsdButton?.layer.cornerRadius = 36
         }
         
 //        if let time = button.keys.first {
