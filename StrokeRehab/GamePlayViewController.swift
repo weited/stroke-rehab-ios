@@ -66,12 +66,14 @@ class GamePlayViewController: UIViewController {
             btnAreaView.layoutIfNeeded()
             let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
             let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
+            
+            let eachHeight = height/CGFloat(btnNum)
             print("size is \(height)")
             print("size is \(width)")
             //            let button = UIButton(frame: CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50))
             
             let button = UIButton()
-            
+            button.frame = CGRect(x: Int(width/2), y: Int(eachHeight) * index - Int(eachHeight)/2, width: btnSize, height: btnSize)
             button.layer.cornerRadius = CGFloat(btnSize/2)
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             button.addTarget(self, action: #selector(buttonDownAction), for: .touchDown)
@@ -81,13 +83,18 @@ class GamePlayViewController: UIViewController {
             btnUIGroup.append(button)
         }
 
+        resetBtn()
         // random button position first then check if overlap
-        repeat
-        {
-            randomPosition()
-            checkBtnOverlap(btnGroup: btnUIGroup)
+        if isBtnRandom {
+            reorderBtnPosition()
         }
-        while isOverlap == true
+       
+//        repeat
+//        {
+//            randomPosition()
+//            checkBtnOverlap(btnGroup: btnUIGroup)
+//        }
+//        while isOverlap == true
         // Do any additional setup after loading the view.
     }
     
@@ -154,13 +161,24 @@ class GamePlayViewController: UIViewController {
                     return
                 }
                 
-                // Random position if btn overlap
-                repeat
-                {
-                    randomPosition()
-                    checkBtnOverlap(btnGroup: btnUIGroup)
-                }
-                while isOverlap == true
+                resetBtn()
+                // random button position
+                if isBtnRandom { reorderBtnPosition() }
+            }
+        }
+    }
+    
+    func resetBtn() {
+        for index in 1...btnNum {
+            //            let button = btnAreaView.viewWithTag(index) as? UIButton
+            let button = btnUIGroup[index-1]
+//            button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: btnSize, height: btnSize)
+            button.setTitle("\(index)", for: .normal)
+            if index == 1 && isBtnIndicator == true {
+                button.backgroundColor = Const.BtnColors.indicator
+            }
+            else {
+                button.backgroundColor = Const.BtnColors.normal
             }
         }
     }
@@ -191,16 +209,25 @@ class GamePlayViewController: UIViewController {
             //            let button = btnAreaView.viewWithTag(index) as? UIButton
             let button = btnUIGroup[index-1]
             button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: btnSize, height: btnSize)
-            button.setTitle("\(index)", for: .normal)
-            if index == 1 && isBtnIndicator == true {
-                button.backgroundColor = Const.BtnColors.indicator
-            }
-            else {
-                button.backgroundColor = Const.BtnColors.normal
-            }
+//            button.setTitle("\(index)", for: .normal)
+//            if index == 1 && isBtnIndicator == true {
+//                button.backgroundColor = Const.BtnColors.indicator
+//            }
+//            else {
+//                button.backgroundColor = Const.BtnColors.normal
+//            }
         }
         // reset overlap for check
         isOverlap = false
+    }
+    
+    func reorderBtnPosition() {
+        repeat
+        {
+            randomPosition()
+            checkBtnOverlap(btnGroup: btnUIGroup)
+        }
+        while isOverlap == true
     }
     
     func getTimeStamp(format: String = "btn") -> String {
