@@ -2,7 +2,7 @@
 //  GamePlayViewController.swift
 //  StrokeRehab
 //
-//  Created by mobiledev on 28/5/2022.
+//  Created by mobiledev on 20/5/2022.
 //
 
 import UIKit
@@ -11,12 +11,13 @@ import FirebaseFirestoreSwift
 
 class GamePlayViewController: UIViewController {
     
-    var repeNum : Int = 1
+    var goalType : String = Const.GoalType.repetition.rawValue
+    var repeNum : Int = 3
     var isFreeMode : Bool = false
     var isBtnRandom : Bool = true
     var isBtnIndicator : Bool = true
     var btnNum : Int = 3
-    var btnSize : Int = 2
+    var btnSize : Int = 50
     var timeLimit : Int = 0
     var isCompleted : Bool = false
     
@@ -29,23 +30,26 @@ class GamePlayViewController: UIViewController {
     var randomBtns : [Int] = [2,1,3]
     
     var currentBtn : Int = 1
-    var roundDone : Int = 0
+    var roundsDone : Int = 0
     
     var btnUIGroup : [UIButton] = []
     var isOverlap : Bool = false
     
-    var goalType : String = Exercise.GoalType.repetition.rawValue
     var timer = Timer()
     
     let db = Firestore.firestore()
     
-    
+    @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var roundsDoneLabel: UILabel!
     @IBOutlet weak var btnAreaView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
         
         //        self.title = "New title"
+        goalLabel.text = isFreeMode ? "Free Mode" : String(repeNum)
+        
         gameStartAt = getTimeStamp()
         
         timer.invalidate()
@@ -58,52 +62,32 @@ class GamePlayViewController: UIViewController {
         // create an empty document
         createGameDoc()
         
-        //        let thisGame = Exercise(id: "tisisldk", repetition: 123, completed: false, startAt: "dafa", endAt: "da", btnPressed: ["2":2], photoPath: "fkafa")
-        //
-        //        thisGame.createGameDoc()
-        
         for index in 1...btnNum {
             btnAreaView.layoutIfNeeded()
-            let height = btnAreaView!.frame.size.height - 50
-            let width = btnAreaView!.frame.size.width - 50
+            let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
+            let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
             print("size is \(height)")
             print("size is \(width)")
             //            let button = UIButton(frame: CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50))
             
             let button = UIButton()
             
-            
-            button.layer.cornerRadius = 25
-            
+            button.layer.cornerRadius = CGFloat(btnSize/2)
             button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             button.addTarget(self, action: #selector(buttonDownAction), for: .touchDown)
             button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpInside)
-            
             button.tag = index
-            
             btnAreaView.addSubview(button)
-            
             btnUIGroup.append(button)
-            
-            
         }
-        
-        print("is over lap before while? \(isOverlap)")
-        
+
         // random button position first then check if overlap
         repeat
         {
-            print("before repeat? \(isOverlap)")
             randomPosition()
             checkBtnOverlap(btnGroup: btnUIGroup)
-            print("after repeat? \(isOverlap)")
         }
         while isOverlap == true
-        
-        
-        
-        
-        
         // Do any additional setup after loading the view.
     }
     
@@ -142,7 +126,6 @@ class GamePlayViewController: UIViewController {
             sender.backgroundColor = Const.BtnColors.normal
         }
     }
-
     
     @objc func buttonAction(sender: UIButton!) {
         print("Current Button \(currentBtn)")
@@ -152,7 +135,7 @@ class GamePlayViewController: UIViewController {
         if sender.tag == currentBtn {
             sender.setTitle("✓", for: .normal)
             sender.backgroundColor = Const.BtnColors.normal
-            if currentBtn < btnNum {
+            if isBtnIndicator == true && currentBtn < btnNum {
                 btnUIGroup[currentBtn].backgroundColor = Const.BtnColors.indicator
 //                btnUIGroup[currentBtn].layer.borderColor = .init(gray: 2, alpha: 1)
             }
@@ -161,10 +144,11 @@ class GamePlayViewController: UIViewController {
             // Completed a round, Reset first btn, increase rounds
             if currentBtn > btnNum {
                 currentBtn = 1
-                roundDone += 1
+                roundsDone += 1
+                roundsDoneLabel.text = String(roundsDone)
                 
                 // Finish Game and Nav to next UI
-                if roundDone == repeNum {
+                if roundsDone == repeNum {
                     completeGame()
                     print("You finished!")
                     return
@@ -200,15 +184,15 @@ class GamePlayViewController: UIViewController {
     }
     
     func randomPosition() {
-        let height = btnAreaView!.frame.size.height - 50
-        let width = btnAreaView!.frame.size.width - 50
+        let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
+        let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
         
         for index in 1...btnNum {
             //            let button = btnAreaView.viewWithTag(index) as? UIButton
             let button = btnUIGroup[index-1]
-            button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: 50, height: 50)
+            button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: btnSize, height: btnSize)
             button.setTitle("\(index)", for: .normal)
-            if index == 1 {
+            if index == 1 && isBtnIndicator == true {
                 button.backgroundColor = Const.BtnColors.indicator
             }
             else {
@@ -272,7 +256,7 @@ class GamePlayViewController: UIViewController {
                     repetition: self.repeNum,
                     timeLimit: self.timeLimit,
                     completed: self.isCompleted,
-                    roundsDone: self.roundDone,
+                    roundsDone: self.roundsDone,
                     timeTakenForRepe: self.timeTakenForRepe,
                     startAt: self.gameStartAt,
                     endAt: self.gameEndAt)
@@ -284,7 +268,7 @@ class GamePlayViewController: UIViewController {
                 gameFinishedScreen.repeNumber = self.repeNum
                 gameFinishedScreen.timeLimit = self.timeLimit
                 gameFinishedScreen.timeTakenForRepe = self.timeTakenForRepe
-                gameFinishedScreen.repeNumForTimeLimit = self.roundDone
+                gameFinishedScreen.repeNumForTimeLimit = self.roundsDone
             }
         }
     }

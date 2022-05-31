@@ -313,13 +313,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqb-1f-h3b">
-                                <rect key="frame" x="317" y="147" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="toggleBtnRandom:" destination="YeF-p0-CWO" eventType="valueChanged" id="sbz-IQ-SLM"/>
-                                </connections>
-                            </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Next button indication" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuN-Dz-rUc">
                                 <rect key="frame" x="39" y="227" width="168" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -328,21 +321,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7V-uP-5rN">
-                                <rect key="frame" x="317" y="222" width="49" height="31"/>
+                                <rect key="frame" x="287" y="222" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="toggleBtnIndicator:" destination="YeF-p0-CWO" eventType="valueChanged" id="TrU-hR-NKd"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of buttons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcs-Jg-G5L">
-                                <rect key="frame" x="39" y="290" width="144" height="21"/>
+                                <rect key="frame" x="39" y="300" width="144" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Zi-z1-N8E">
-                                <rect key="frame" x="262" y="274" width="132" height="81"/>
+                                <rect key="frame" x="244" y="270" width="132" height="81"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Button size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lA6-Gk-Fzj">
@@ -353,7 +346,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="aU4-oB-t2C">
-                                <rect key="frame" x="248" y="363" width="118" height="30"/>
+                                <rect key="frame" x="251" y="367" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="btnSizeSliderchanged:" destination="YeF-p0-CWO" eventType="valueChanged" id="fs3-9T-kxT"/>
@@ -380,6 +373,19 @@
                                     <constraint firstAttribute="height" constant="50" id="Qdb-x6-tBr"/>
                                 </constraints>
                             </stackView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqb-1f-h3b">
+                                <rect key="frame" x="287" y="147" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="toggleBtnRandom:" destination="YeF-p0-CWO" eventType="valueChanged" id="sbz-IQ-SLM"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uf3-b0-jxr">
+                                <rect key="frame" x="171" y="505" width="72" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="1"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rAa-So-on5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -395,11 +401,12 @@
                         <outlet property="btnNumPicker" destination="5Zi-z1-N8E" id="6hS-xt-jy7"/>
                         <outlet property="btnRandomSwitch" destination="hqb-1f-h3b" id="yaT-M3-A39"/>
                         <outlet property="btnSizeSlider" destination="aU4-oB-t2C" id="wF3-fe-eB0"/>
+                        <outlet property="demoBtn" destination="Uf3-b0-jxr" id="aFY-Uy-zhh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48I-yx-ZX6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7836" y="143"/>
+            <point key="canvasLocation" x="7834.7826086956529" y="142.63392857142856"/>
         </scene>
         <!--Game-->
         <scene sceneID="zcn-b3-q8S">
@@ -428,17 +435,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAl-z5-ad1">
-                                        <rect key="frame" x="309" y="10" width="11" height="21"/>
+                                        <rect key="frame" x="309" y="10" width="35" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" systemColor="systemPurpleColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPm-i1-jYK">
-                                        <rect key="frame" x="107" y="10" width="11" height="21"/>
+                                        <rect key="frame" x="107" y="10" width="72" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" systemColor="systemBlueColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -459,14 +466,16 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnAreaView" destination="s3R-0o-2wJ" id="lYy-Oe-Xab"/>
+                        <outlet property="goalLabel" destination="RPm-i1-jYK" id="cub-55-RNy"/>
+                        <outlet property="roundsDoneLabel" destination="dAl-z5-ad1" id="irj-nz-d3C"/>
                         <segue destination="ITK-Fs-C2n" kind="show" identifier="gameToFinished" id="cPp-d4-o4t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2i-qh-Smo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9099" y="143"/>
+            <point key="canvasLocation" x="9098.5507246376819" y="142.63392857142856"/>
         </scene>
-        <!--Game Done View Controller-->
+        <!--Game Results-->
         <scene sceneID="zk6-pX-Igy">
             <objects>
                 <viewController id="ITK-Fs-C2n" customClass="GameDoneViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
@@ -613,10 +622,10 @@ You have finished the exercise. </string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Oor-5B-Q6r">
+                    <navigationItem key="navigationItem" title="Game Results" id="Oor-5B-Q6r">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="pma-nr-jJh">
                             <connections>
-                                <action selector="cameraTapped:" destination="ITK-Fs-C2n" id="gZ5-3U-WId"/>
+                                <action selector="doneBtnTapped:" destination="ITK-Fs-C2n" id="uXe-x5-nE8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -741,6 +750,12 @@ You have finished the exercise. </string>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

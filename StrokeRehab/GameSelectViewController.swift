@@ -15,7 +15,9 @@ class GameSelectViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func unwindFromGameDoneToHistory(sender: UIStoryboardSegue)
+    {
+    }
     /*
     // MARK: - Navigation
 

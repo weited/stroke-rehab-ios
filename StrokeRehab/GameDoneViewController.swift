@@ -36,6 +36,8 @@ class GameDoneViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.hidesBackButton = true
+        
         let freeMode = self.gameFinishInfor!.isFreeMode
         
         startTimeLabel.text = gameStartAt
@@ -49,7 +51,8 @@ class GameDoneViewController: UIViewController,
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
+    @IBAction func doneBtnTapped(_ sender: UIBarButtonItem) {
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func uploadBtnTapped(_ sender: Any) {
