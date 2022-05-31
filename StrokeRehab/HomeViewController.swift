@@ -11,9 +11,14 @@ import FirebaseFirestoreSwift
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let txt = Exercise.printBtn()
+        nameLabel.text = txt
+        print("#############\(txt)")
         // Do any additional setup after loading the view.
         let db = Firestore.firestore()
         print("\nINITIALIZED FIRESTORE APP \(db.app.name)\n")

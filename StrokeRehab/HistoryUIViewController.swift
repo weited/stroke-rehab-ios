@@ -21,10 +21,17 @@ class HistoryUIViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         historyTableView.dataSource = self
+//        fetchHistory()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchHistory()
+    }
+    
+    func fetchHistory() {
         let db = Firestore.firestore()
         let exerciseCollection = db.collection(Const.collectionName)
-        
-        let atemp = Exercise(id:  nil, isFreeMode: false, gameGoalType: <#T##String#>, repetition: <#T##Int#>, timeLimit: <#T##Int#>, completed: <#T##Bool#>, roundsDone: <#T##Int#>, timeTakenForRepe: <#T##Int#>, startAt: <#T##String#>, endAt: <#T##String#>, btnPressed: <#T##[String : Int]#>, photoPath: <#T##String#>)
         
         exerciseCollection.getDocuments() { (result, err) in
             if let err = err
@@ -33,6 +40,7 @@ class HistoryUIViewController: UIViewController {
             }
             else
             {
+                self.exercises.removeAll()
                 for document in result!.documents
                 {
                     let conversionResult = Result
@@ -42,8 +50,6 @@ class HistoryUIViewController: UIViewController {
                     switch conversionResult
                     {
                         case .success(let exercise):
-                            print("Exercise: \(exercise)")
-                                
                             //NOTE THE ADDITION OF THIS LINE
                             self.exercises.append(exercise)
                             
@@ -57,7 +63,6 @@ class HistoryUIViewController: UIViewController {
                 self.historyTableView.reloadData()
             }
         }
-        
     }
     
 
@@ -70,8 +75,43 @@ class HistoryUIViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        super.prepare(for: segue, sender: sender)
+        
+        // is this the segue to the details screen? (in more complex apps, there is more than one segue per screen)
+        if segue.identifier == Const.showHistoryDetailSegue
+        {
+              //down-cast from UIViewController to DetailViewController (this could fail if we didn’t link things up properly)
+              guard let detailViewController = segue.destination as? HistoryDetailViewController else
+              {
+                  fatalError("Unexpected destination: \(segue.destination)")
+              }
+
+              //down-cast from UITableViewCell to MovieUITableViewCell (this could fail if we didn’t link things up properly)
+              guard let selectedExerciseCell = sender as? HistoryUITableViewCell else
+              {
+                  fatalError("Unexpected sender: \( String(describing: sender))")
+              }
+
+              //get the number of the row that was pressed (this could fail if the cell wasn’t in the table but we know it is)
+            guard let indexPath = historyTableView.indexPath(for: selectedExerciseCell) else
+              {
+                  fatalError("The selected cell is not being displayed by the table")
+              }
+
+              //work out which movie it is using the row number
+              let selectedExercise = exercises[indexPath.row]
+
+              //send it to the details screen
+              detailViewController.exercise = selectedExercise
+              detailViewController.exerciseIndex = indexPath.row
+        }
+    }
 
 }
+
+
 
 extension HistoryUIViewController : UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {

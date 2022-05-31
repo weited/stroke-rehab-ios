@@ -18,17 +18,17 @@ public struct Exercise : Codable
     
     
     var id : String?
-    var isFreeMode : Bool = false
-    var gameGoalType : String = Const.GoalType.repetition.rawValue
+    var isFreeMode : Bool? = false
+    var gameGoalType : String?
     var repetition : Int = 0
-    var timeLimit : Int = 0
+    var timeLimit : Int? = 0
     var completed : Bool = false
-    var roundsDone : Int = 0
-    var timeTakenForRepe : Int = 0
+    var roundsDone : Int?
+    var timeTakenForRepe : Int? = 0
     var startAt : String
-    var endAt : String = ""
-    var btnPressed: [String:Int] = [:]
-    var photoPath : String = ""
+    var endAt : String? = ""
+    var btnPressed: [[String:Int]] = [[:]]
+//    var photoPath : String = ""
 //    var goal : GoalType = GoalType.repetition
     
     enum GoalType : String {
@@ -88,6 +88,31 @@ public struct Exercise : Codable
                 print("Successfully finished execrise!")
             }
         })
+    }
+    
+    static func printBtn() -> String {
+//        btnsPressed : [[String:Int]]
+        let btns = ["1":0,"20s22-028'-232 05123" : 1,"20z22sv-9804-141 13231" : 2,"2022-0x28-232 05123" : 3,"2022-9c804-141 13231" : 4,"2022v-028-232 05123" : 5,"2022-9804-141 132b31" : 6,"2022-0n28-232 05123" : 7,"2022-980m4-141 13231" : 8,"2022z-028,-232 05123" : 9,"202.2-98zx04-141 13231" : 10,"2022-02x8-232 0/5123" : 11,"2022-19c804-141 13231" : 12,"20222-v028-232 05123" : 13,"20223-9804-141 13231" : 14,"20422-028-232 05123" : 15,"2022-9804-141 153231" : 16,"2022-0286-232 05123" : 17,"2022-98704-141 13231" : 18,"20822-028-232 05123" : 19,"2022-99b804-141 13231" : 20,"2022n-028-232 050123" : 21,"2022-9-804m-141 13231" : 22,"2022-=,028-232 05123" : 23,"202.2-a9804-141 13231" : 24,"2022f-028-232/ 05123" : 25,"2022-9804-1`41 13g231" : 26,"afsfsafsfas":27]
+        var displayStr : String = ""
+                
+        let btnStrings = btns.map{ (btn) -> String in
+            let btnStr = "\(btn.key)    \(btn.value)"
+//            displayStr += btnStr
+//            print(btnStr)
+            return btnStr
+        }
+        
+        print(btns)
+        displayStr = btnStrings.joined(separator: "\n")
+////        return btnStr
+//        for btn in btns{
+////            let key = btn.key
+////            let value = String(btn.value)
+//            let btnStr = "\(btn.key)    \(btn.value)\n"
+//            displayStr += btnStr
+////            btnStr.append()
+//        }
+        return displayStr
     }
     
 }

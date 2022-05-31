@@ -37,15 +37,24 @@ class GameDoneViewController: UIViewController,
         super.viewDidLoad()
 
         navigationItem.hidesBackButton = true
+
+        if let infor = gameFinishInfor
+        {
+            startTimeLabel.text = infor.startAt
+            endTimeLabel.text = infor.endAt
+            gameModeLabel.text = isFreeMode ? "Free Mode" : "Goal Mode"
+            goalTypeLabel.text = infor.gameGoalType == Const.GoalType.repetition.rawValue ? "\(repeNumber)   Repetitions" : "\(timeLimit) Seconds Time Limit"
+            repeNumLabel.text = String(infor.repetition)
+            timeTakenLabel.text = String(infor.timeTakenForRepe!)
+            print("@@@@@@@@@@@@@@\(infor.timeLimit!)")
+        }
         
-        let freeMode = self.gameFinishInfor!.isFreeMode
-        
-        startTimeLabel.text = gameStartAt
-        endTimeLabel.text = gameEndAt
-        gameModeLabel.text = freeMode ? "Free Mode" : "Goal Mode"
-        goalTypeLabel.text = gameGoalType == Const.GoalType.repetition.rawValue ? "\(repeNumber)   Repetitions" : "\(timeLimit) Seconds Time Limit"
-        repeNumLabel.text = String(repeNumber)
-        timeTakenLabel.text = String(timeTakenForRepe)
+//        startTimeLabel.text = gameStartAt
+//        endTimeLabel.text = gameEndAt
+//        gameModeLabel.text = freeMode ?? false ? "Free Mode" : "Goal Mode"
+//        goalTypeLabel.text = gameGoalType == Const.GoalType.repetition.rawValue ? "\(repeNumber)   Repetitions" : "\(timeLimit) Seconds Time Limit"
+//        repeNumLabel.text = String(repeNumber)
+//        timeTakenLabel.text = String(timeTakenForRepe)
         
 //        Exercise.GoalType.repetition
         // Do any additional setup after loading the view.

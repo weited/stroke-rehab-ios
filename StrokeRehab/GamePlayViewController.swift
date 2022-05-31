@@ -249,7 +249,7 @@ class GamePlayViewController: UIViewController {
             repetition: repeNum,
             completed: false,
             startAt: gameStartAt,
-            btnPressed: [String:Int]()
+            btnPressed: [[String:Int]]()
         )
         newGameDoc.createExerciseDoc()
     }
