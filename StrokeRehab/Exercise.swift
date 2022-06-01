@@ -68,7 +68,7 @@ public struct Exercise : Codable
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
-                print("Successfully uploaded button pressed")
+                print("Successfully finished  execrise!")
             }
         })
     }
@@ -83,7 +83,7 @@ public struct Exercise : Codable
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
-                print("Successfully finished execrise!")
+                print("Successfully uploaded button pressed")
             }
         })
     }
