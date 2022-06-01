@@ -27,6 +27,7 @@ class GamePlayViewController: UIViewController {
     var roundsDone : Int = 0
     
     var btnUIGroup : [UIButton] = []
+    var doubleBtn : Int = 1
     var secBtnUIGroup : [UIButton] = []
     var isOverlap : Bool = false
     
@@ -63,16 +64,17 @@ class GamePlayViewController: UIViewController {
 //        timer.invalidate()
         
         self.docId = getTimeStamp(format: "gameId")
-        
+        doubleBtn = isPrescribedGame ? 1 : 2
         // create an empty document
         createGameDoc()
-        
-//        if isPrescribedGame {
+        createBtnGroup()
+        if isPrescribedGame {
 //            createBtnGroup()
-//        } else {
+            
+        } else {
 //            btnUIGroup = createBtnGroup(isPscGame: false, isSecondGroup: false)
 //            secBtnUIGroup = createBtnGroup(isPscGame: false, isSecondGroup: true)
-//        }
+        }
         
         
         
@@ -81,8 +83,8 @@ class GamePlayViewController: UIViewController {
         print("############### \(btnUIGroup.count)")
         
         func createBtnGroup() {
-            let i = isPrescribedGame ? 1 : 2
-            for index in 1...(btnNum * i) {
+//            let i = isPrescribedGame ? 1 : 2
+            for index in 1...(btnNum * doubleBtn) {
                 btnAreaView.layoutIfNeeded()
                 let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
                 let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
@@ -230,13 +232,13 @@ class GamePlayViewController: UIViewController {
     }
     
     func resetBtn() {
-        for index in 1...btnNum {
+        for index in 1...(btnNum * doubleBtn) {
             //            let button = btnAreaView.viewWithTag(index) as? UIButton
             let button = btnUIGroup[index-1]
 //            button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: btnSize, height: btnSize)
             button.setTitle("\(index)", for: .normal)
 //            button.titleLabel?.font = UIFont(name: "System", size: btnsize/2)
-            if index == 1 && isBtnIndicator == true {
+            if index % btnNum == 1 && isBtnIndicator == true {
                 button.backgroundColor = Const.BtnColors.indicator
             }
             else {
@@ -251,11 +253,11 @@ class GamePlayViewController: UIViewController {
         // reset overlap for check
         isOverlap = false
         print("is over lap? \(isOverlap)")
-        for i in 0..<btnNum {
+        for i in 0..<(btnNum * doubleBtn) {
             if isOverlap == true {
                 break
             } else {
-                for j in i+1..<btnNum {
+                for j in i+1..<(btnNum * doubleBtn) {
                     if btnGroup[i].frame.intersects(btnGroup[j].frame) {
                         isOverlap = true
                         break
@@ -270,7 +272,7 @@ class GamePlayViewController: UIViewController {
         let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
         let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
         
-        for index in 1...btnNum {
+        for index in 1...(btnNum * doubleBtn) {
             //            let button = btnAreaView.viewWithTag(index) as? UIButton
             let button = btnUIGroup[index-1]
             button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: btnSize, height: btnSize)
