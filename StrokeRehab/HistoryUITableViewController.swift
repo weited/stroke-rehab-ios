@@ -82,7 +82,7 @@ class HistoryUITableViewController: UITableViewController {
         if let exerciseCell = cell as? HistoryUITableViewCell
         {
             //populate the cell
-            exerciseCell.repeLabel.text = String(exercise.repetition)
+            exerciseCell.repeLabel.text = String(exercise.repetitionDone)
             exerciseCell.startAtLabel.text = String(exercise.startAt)
         }
         return cell

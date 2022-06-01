@@ -13,7 +13,7 @@ class GameDoneViewController: UIViewController,
 {
     
     var isFreeMode = false
-    var gameGoalType = Exercise.GoalType.repetition.rawValue
+    var gameGoalType = Const.GoalType.repetition.rawValue
     var gameStartAt : String = ""
     var gameEndAt : String = ""
     var repeNumber : Int = 0
@@ -44,7 +44,7 @@ class GameDoneViewController: UIViewController,
             endTimeLabel.text = infor.endAt
             gameModeLabel.text = isFreeMode ? "Free Mode" : "Goal Mode"
             goalTypeLabel.text = infor.gameGoalType == Const.GoalType.repetition.rawValue ? "\(repeNumber)   Repetitions" : "\(timeLimit) Seconds Time Limit"
-            repeNumLabel.text = String(infor.repetition)
+            repeNumLabel.text = String(infor.repetitionDone)
             timeTakenLabel.text = String(infor.timeTakenForRepe!)
             print("@@@@@@@@@@@@@@\(infor.timeLimit!)")
         }

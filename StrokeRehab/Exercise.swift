@@ -19,22 +19,22 @@ public struct Exercise : Codable
     
     var id : String?
     var isFreeMode : Bool? = false
-    var gameGoalType : String?
-    var repetition : Int = 0
+    var gameGoalType : String = Const.GoalType.repetition.rawValue
+    var repetitionLimit : Int = 0
     var timeLimit : Int? = 0
     var completed : Bool = false
-    var roundsDone : Int?
+    var repetitionDone : Int = 0
     var timeTakenForRepe : Int? = 0
     var startAt : String
-    var endAt : String? = ""
+    var endAt : String = ""
     var btnPressed: [[String:String]] = [[:]]
 //    var photoPath : String = ""
 //    var goal : GoalType = GoalType.repetition
     
-    enum GoalType : String {
-        case repetition
-        case timeLimit
-    }
+//    enum GoalType : String {
+//        case repetition
+//        case timeLimit
+//    }
     
     func createExerciseDoc() {
         let db = Firestore.firestore()
@@ -44,8 +44,9 @@ public struct Exercise : Codable
             try exerciseCollection.document(self.id!).setData([
                 "id" : self.id,
                 "isFreeMode" : self.isFreeMode,
-                "gameGoalType" : gameGoalType,
-                "repetition" : self.repetition,
+                "gameGoalType" : self.gameGoalType,
+                "repetitionLimit" : self.repetitionLimit,
+                "repetitionDone" : self.repetitionDone,
                 "completed" : self.completed,
                 "startAt" : self.startAt,
                 "endAt" : self.endAt,
@@ -63,12 +64,13 @@ public struct Exercise : Codable
         }
     }
     
-    static func updateDocGameFinished(documentId id: String, isCompleted completed: Bool, endAt timeStamp: String) {
+    static func updateDocGameFinished(documentId id: String, isCompleted completed: Bool, endAt timeStamp: String, repetitionsDone repeNum : Int) {
         let db = Firestore.firestore()
         let exerciseDocument = db.collection(Const.collectionName).document(id)
         exerciseDocument.updateData([
             "completed" : completed,
             "endAt" : timeStamp,
+            "repetitionDone" : repeNum
         ], completion: { (err) in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -78,10 +80,11 @@ public struct Exercise : Codable
         })
     }
     
-    static func addBtnPressedToDB(documentId id: String, btnPressed button: [String:Any]) {
+    static func addBtnPressedToDB(documentId id: String, repetitionDone repeNum: Int ,btnPressed button: [String:Any]) {
         let db = Firestore.firestore()
         let exerciseDocument = db.collection(Const.collectionName).document(id)
         exerciseDocument.updateData([
+            "repetitionDone" : repeNum,
             "btnPressed" : FieldValue.arrayUnion([button])
         ], completion: { (err) in
             if let err = err {

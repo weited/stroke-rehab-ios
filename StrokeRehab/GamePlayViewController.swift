@@ -127,7 +127,6 @@ class GamePlayViewController: UIViewController {
     
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped\(sender.tag)")
-        Exercise.addBtnPressedToDB(documentId: docId, btnPressed: ["time" : getTimeStamp(), "btn":String(sender.tag),"check":"true"])
         var pressCheck = "false"
         
         if sender.tag == currentBtn {
@@ -147,7 +146,7 @@ class GamePlayViewController: UIViewController {
                 
                 // Finish Game and Nav to next UI
                 if roundsDone == repeNum {
-                    completeGame()
+                    finishGame(isCompleted: true)
                     print("You finished!")
                     return
                 }
@@ -160,7 +159,7 @@ class GamePlayViewController: UIViewController {
             sender.setTitle("\(sender.tag)", for: .normal)
             sender.backgroundColor = Const.BtnColors.normal
         }
-        Exercise.addBtnPressedToDB(documentId: docId, btnPressed: ["time" : getTimeStamp(), "btn":String(sender.tag),"check":pressCheck])
+        Exercise.addBtnPressedToDB(documentId: docId, repetitionDone: roundsDone, btnPressed: ["time" : getTimeStamp(), "btn":String(sender.tag),"check":pressCheck])
     }
     
     func resetBtn() {
@@ -243,7 +242,7 @@ class GamePlayViewController: UIViewController {
             id: docId,
             isFreeMode: isFreeMode,
             gameGoalType: goalType,
-            repetition: repeNum,
+            repetitionLimit: repeNum,
             completed: false,
             startAt: gameStartAt,
             btnPressed: [[String:String]]()
@@ -251,9 +250,9 @@ class GamePlayViewController: UIViewController {
         newGameDoc.createExerciseDoc()
     }
     
-    func completeGame() {
+    func finishGame(isCompleted compeleteStatus : Bool = false) {
         gameEndAt = getTimeStamp()
-        Exercise.updateDocGameFinished(documentId: docId, isCompleted: true, endAt: gameEndAt)
+        Exercise.updateDocGameFinished(documentId: docId, isCompleted: compeleteStatus, endAt: gameEndAt, repetitionsDone: roundsDone)
         
         self.performSegue(withIdentifier: Const.gameToFinishedSegue, sender: nil)
     }
@@ -277,10 +276,10 @@ class GamePlayViewController: UIViewController {
                 let gameInfor = Exercise(
                     isFreeMode: self.isFreeMode,
                     gameGoalType: self.goalType,
-                    repetition: self.repeNum,
+                    repetitionLimit: self.repeNum,
                     timeLimit: self.timeLimit,
                     completed: self.isCompleted,
-                    roundsDone: self.roundsDone,
+                    repetitionDone: self.roundsDone,
                     timeTakenForRepe: self.timeTakenForRepe,
                     startAt: self.gameStartAt,
                     endAt: self.gameEndAt)

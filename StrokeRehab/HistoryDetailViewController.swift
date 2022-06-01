@@ -14,7 +14,10 @@ class HistoryDetailViewController: UIViewController {
     var btnPressedArry = [[String : String]]()
     
     @IBOutlet weak var goalTypeLabel: UILabel!
-    @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var goalLimitLabel: UILabel!
+    @IBOutlet weak var startAtLabel: UILabel!
+    @IBOutlet weak var endAtLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var totalPressedNumLabel: UILabel!
     @IBOutlet weak var repeDoneLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -30,10 +33,11 @@ class HistoryDetailViewController: UIViewController {
         {
             btnPressedArry = displayExercise.btnPressed
             let totalPressedNum = displayExercise.btnPressed.count
-            repeDoneLabel.text = String(displayExercise.repetition)
+            repeDoneLabel.text = String(displayExercise.repetitionDone)
             totalPressedNumLabel.text = String(totalPressedNum)
             goalTypeLabel.text = displayExercise.gameGoalType
-            goalLabel.text = "\(displayExercise.repetition)    Repetitions"
+            goalLimitLabel.text = "\(displayExercise.repetitionLimit)    Repetitions"
+            
         }
     }
     
