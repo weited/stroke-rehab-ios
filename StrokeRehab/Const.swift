@@ -20,6 +20,11 @@ struct Const {
         case timeLimit = "Time Limit"
     }
     
+    enum GameName : String {
+        case pGame = "Prescribed Game"
+        case dGame = "Designed Game"
+    }
+    
     struct BtnColors {
         static let normal : UIColor = .init(red: 0.647468, green: 0.840358, blue: 0.980702, alpha: 1)
         static let indicator : UIColor = .init(red: 1.02621, green: 0.864526, blue: 0.953756, alpha: 1)

@@ -4,6 +4,7 @@ import FirebaseFirestoreSwift
 
 class GamePlayViewController: UIViewController {
     
+    var isPrescribedGame : Bool = false
     var goalType : String = Const.GoalType.repetition.rawValue
     var repeNum : Int = 3
     var isFreeMode : Bool = false
@@ -19,13 +20,14 @@ class GamePlayViewController: UIViewController {
     var gameEndAt : String = ""
     var timeTakenForRepe : Int = 0
     
-    var targetBtns : [Int] = [1,2,3]
-    var randomBtns : [Int] = [2,1,3]
+//    var targetBtns : [Int] = [1,2,3]
+//    var randomBtns : [Int] = [2,1,3]
     
     var currentBtn : Int = 1
     var roundsDone : Int = 0
     
     var btnUIGroup : [UIButton] = []
+    var secBtnUIGroup : [UIButton] = []
     var isOverlap : Bool = false
     
     var timer = Timer()
@@ -65,23 +67,49 @@ class GamePlayViewController: UIViewController {
         // create an empty document
         createGameDoc()
         
-        for index in 1...btnNum {
-            btnAreaView.layoutIfNeeded()
-            let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
-            let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
-            
-            let eachHeight = height/CGFloat(btnNum)
-            
-            let button = UIButton()
-            button.frame = CGRect(x: Int(width/2), y: Int(eachHeight) * index - Int(eachHeight)/2, width: btnSize, height: btnSize)
-            button.layer.cornerRadius = CGFloat(btnSize/2)
-            button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-            button.addTarget(self, action: #selector(buttonDownAction), for: .touchDown)
-            button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpOutside)
-            button.tag = index
-            btnAreaView.addSubview(button)
-            btnUIGroup.append(button)
+//        if isPrescribedGame {
+//            createBtnGroup()
+//        } else {
+//            btnUIGroup = createBtnGroup(isPscGame: false, isSecondGroup: false)
+//            secBtnUIGroup = createBtnGroup(isPscGame: false, isSecondGroup: true)
+//        }
+        
+        
+        
+      
+        
+        print("############### \(btnUIGroup.count)")
+        
+        func createBtnGroup() {
+            let i = isPrescribedGame ? 1 : 2
+            for index in 1...(btnNum * i) {
+                btnAreaView.layoutIfNeeded()
+                let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
+                let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
+                
+                let eachHeight = height/CGFloat(btnNum)
+                
+                let button = UIButton()
+                button.frame = CGRect(x: Int(width/2), y: Int(eachHeight) * index - Int(eachHeight)/2, width: btnSize, height: btnSize)
+                button.layer.cornerRadius = CGFloat(btnSize/2)
+                
+                if isPrescribedGame == true {
+                    button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+                    button.addTarget(self, action: #selector(buttonDownAction), for: .touchDown)
+                    button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpOutside)
+                } else {
+                    button.addTarget(self, action: #selector(twoButtonDownAction), for: .touchDown)
+                }
+                
+                button.tag = index
+//                isSecondGroup ? (button.tag = index + 5) : (button.tag = index)
+
+                btnAreaView.addSubview(button)
+                btnUIGroup.append(button)
+            }
         }
+        
+
 
         resetBtn()
         // random button position first then check if overlap
@@ -185,6 +213,10 @@ class GamePlayViewController: UIViewController {
             sender.backgroundColor = Const.BtnColors.normal
         }
         Exercise.addBtnPressedToDB(documentId: docId, repetitionDone: roundsDone, btnPressed: ["time" : getTimeStamp(), "btn":String(sender.tag),"check":pressCheck])
+    }
+    
+    @objc func twoButtonDownAction(sender: UIButton!) {
+        print("pressed!!!!!!!!!! \(sender.tag)")
     }
     
     func startTimer() {
