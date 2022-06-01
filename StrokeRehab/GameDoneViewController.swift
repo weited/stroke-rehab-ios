@@ -1,10 +1,3 @@
-//
-//  GameDoneViewController.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 30/5/2022.
-//
-
 import UIKit
 
 class GameDoneViewController: UIViewController,
@@ -43,7 +36,7 @@ class GameDoneViewController: UIViewController,
             startTimeLabel.text = infor.startAt
             endTimeLabel.text = infor.endAt
             repeNumLabel.text = String(infor.repetitionDone)
-            timeTakenLabel.text = String(infor.timeTakenForRepe!)
+            timeTakenLabel.text = "\(infor.timeTakenForRepe!) Seconds"
             
             if infor.isFreeMode == true {
                 gameModeLabel.text = "Free Mode"
@@ -51,7 +44,11 @@ class GameDoneViewController: UIViewController,
                 
             } else {
                 gameModeLabel.text = "Goal Mode"
-                goalTypeLabel.text = infor.gameGoalType == Const.GoalType.repetition.rawValue ? "\(infor.repetitionLimit)   Repetitions" : "\(infor.timeLimit) Seconds Time Limit"
+                if gameGoalType == Const.GoalType.repetition.rawValue {
+                    goalTypeLabel.text = "\(infor.repetitionLimit)   Repetitions"
+                }
+                goalTypeLabel.text = "\(infor.timeLimit!) Seconds"
+                timeTakenLabel.text = "Time Limit mode"
             }
         }
         

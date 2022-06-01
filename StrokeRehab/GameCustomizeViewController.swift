@@ -1,16 +1,10 @@
-//
-//  GameCustomizeViewController.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 26/5/2022.
-//
-
 import UIKit
 
 class GameCustomizeViewController: UIViewController {
 
     var goalType : String = Const.GoalType.repetition.rawValue
     var repeNum : Int = 3
+    var timeLimit : Int = 30
     var isFreeMode : Bool = false
     var isBtnRandom : Bool = true
     var isBtnIndicator : Bool = true
@@ -35,7 +29,7 @@ class GameCustomizeViewController: UIViewController {
         demoBtn.layer.cornerRadius = CGFloat(btnSize/2)
         demoBtn.clipsToBounds = true
         demoBtn.frame = CGRect(x: 180, y: 480, width: btnSize, height: btnSize)
-        print("is free mode ?  \(isFreeMode)")
+        print("is free mode ?  \(timeLimit)")
         // Do any additional setup after loading the view.
     }
     
@@ -71,6 +65,7 @@ class GameCustomizeViewController: UIViewController {
             {
                 gamePlayScreen.goalType = goalType
                 gamePlayScreen.repeNum = repeNum
+                gamePlayScreen.timeLimit = timeLimit
                 gamePlayScreen.isFreeMode = isFreeMode
                 gamePlayScreen.isBtnRandom = isBtnRandom
                 gamePlayScreen.isBtnIndicator = isBtnIndicator

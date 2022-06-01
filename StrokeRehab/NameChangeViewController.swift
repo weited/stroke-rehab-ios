@@ -1,10 +1,3 @@
-//
-//  NameChangeViewController.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 1/6/2022.
-//
-
 import UIKit
 
 class NameChangeViewController: UIViewController {

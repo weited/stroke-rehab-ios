@@ -1,10 +1,3 @@
-//
-//  GamePlayViewController.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 20/5/2022.
-//
-
 import UIKit
 import Firebase
 import FirebaseFirestoreSwift
@@ -36,6 +29,7 @@ class GamePlayViewController: UIViewController {
     var isOverlap : Bool = false
     
     var timer = Timer()
+    var timeCuntDown : Int = 30
     
     let db = Firestore.firestore()
     
@@ -46,10 +40,21 @@ class GamePlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        
-        print("game play \(isFreeMode)")
+        timeCuntDown = timeLimit
+        print("game play \(goalType)")
         //        self.title = "New title"
-        goalLabel.text = isFreeMode ? "Free Mode" : String(repeNum)
+        if isFreeMode == true {
+            goalLabel.text = "Free Mode"
+        } else {
+            if goalType == Const.GoalType.repetition.rawValue {
+                goalLabel.text = String(repeNum)
+            } else {
+                self.title = String(timeLimit)
+                goalLabel.text = "\(timeLimit) S"
+            }
+            
+        }
+        
         
         gameStartAt = getTimeStamp()
         
@@ -116,17 +121,14 @@ class GamePlayViewController: UIViewController {
     @objc func timerForRepetition() {
         timeTakenForRepe += 1
         self.title = String(timeTakenForRepe)
-        if goalType == Const.GoalType.timeLimit.rawValue {
-            if timeTakenForRepe == timeLimit { finishGame(isCompleted: true) }
-        }
     }
     
     @objc func timerForTimeLimit() {
-        timeLimit -= 1
-        print("%%%%%%%%%%%%%% \(goalType) and \(timeLimit)")
-        self.title = String(timeLimit)
-        if timeLimit == 0 {
+        timeCuntDown -= 1
+        self.title = String(timeCuntDown)
+        if timeCuntDown == 0 {
             timer.invalidate()
+            finishGame(isCompleted: true)
         }
     }
     
@@ -188,7 +190,12 @@ class GamePlayViewController: UIViewController {
     
     func startTimer() {
         timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
+        if goalType == Const.GoalType.repetition.rawValue {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
+        } else {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForTimeLimit), userInfo: nil, repeats: true)
+        }
+        
     }
     
     func resetBtn() {
@@ -314,14 +321,14 @@ class GamePlayViewController: UIViewController {
                     startAt: self.gameStartAt,
                     endAt: self.gameEndAt)
                 gameFinishedScreen.gameFinishInfor = gameInfor
-                gameFinishedScreen.isFreeMode = self.isFreeMode
-                gameFinishedScreen.gameGoalType = self.goalType
-                gameFinishedScreen.gameStartAt = self.gameStartAt
-                gameFinishedScreen.gameEndAt = self.gameEndAt
-                gameFinishedScreen.repeNumber = self.repeNum
-                gameFinishedScreen.timeLimit = self.timeLimit
-                gameFinishedScreen.timeTakenForRepe = self.timeTakenForRepe
-                gameFinishedScreen.repeNumForTimeLimit = self.roundsDone
+//                gameFinishedScreen.isFreeMode = self.isFreeMode
+//                gameFinishedScreen.gameGoalType = self.goalType
+//                gameFinishedScreen.gameStartAt = self.gameStartAt
+//                gameFinishedScreen.gameEndAt = self.gameEndAt
+//                gameFinishedScreen.repeNumber = self.repeNum
+//                gameFinishedScreen.timeLimit = self.timeLimit
+//                gameFinishedScreen.timeTakenForRepe = self.timeTakenForRepe
+//                gameFinishedScreen.repeNumForTimeLimit = self.roundsDone
             }
         }
     }

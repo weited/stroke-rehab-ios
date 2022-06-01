@@ -1,10 +1,3 @@
-//
-//  Exercise.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 23/5/2022.
-//
-
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
@@ -75,7 +68,7 @@ public struct Exercise : Codable
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
-                print("Successfully finished execrise!")
+                print("Successfully uploaded button pressed
             }
         })
     }

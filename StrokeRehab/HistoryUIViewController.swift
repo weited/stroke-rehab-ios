@@ -1,10 +1,3 @@
-//
-//  HistoryUIViewController.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 31/5/2022.
-//
-
 import UIKit
 import Firebase
 import FirebaseFirestoreSwift

@@ -1,18 +1,9 @@
-//
-//  GameModeViewController.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 1/6/2022.
-//
-
 import UIKit
 
 class GameModeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("in mode")
         // Do any additional setup after loading the view.
     }
     

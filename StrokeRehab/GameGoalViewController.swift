@@ -1,10 +1,3 @@
-//
-//  GameGoalViewController.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 26/5/2022.
-//
-
 import UIKit
 
 class GameGoalViewController: UIViewController {
@@ -44,6 +37,10 @@ class GameGoalViewController: UIViewController {
         goalPicker.delegate = self
         goalPicker.selectRow(2, inComponent: 0, animated: false)
         
+        timeButton.backgroundColor = UIColor.darkGray
+        repeButton.backgroundColor = UIColor.systemBlue
+        timeButton.layer.cornerRadius = 10
+        repeButton.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
     }
 
@@ -52,6 +49,10 @@ class GameGoalViewController: UIViewController {
         goalPickerRange = repRange
         goalPicker.reloadAllComponents()
         goalPicker.selectRow(2, inComponent: 0, animated: false)
+        goalDisplayLabel.text = "3"
+        timeButton.backgroundColor = UIColor.darkGray
+        repeButton.backgroundColor = UIColor.systemBlue
+//        timeButton.tintColor = UIColor.darkGray
     }
     
     
@@ -59,7 +60,13 @@ class GameGoalViewController: UIViewController {
         goalType = Const.GoalType.timeLimit.rawValue
         goalPickerRange = timeRange
         goalPicker.reloadAllComponents()
-        goalPicker.selectRow(2, inComponent: 0, animated: false)
+        goalPicker.selectRow(1, inComponent: 0, animated: false)
+        goalDisplayLabel.text = timeRange[1]
+//        repeButton.tintColor = UIColor.darkGray
+//        timeButton.tintColor = UIColor.systemBlue
+        timeButton.backgroundColor = UIColor.systemBlue
+        repeButton.backgroundColor = UIColor.darkGray
+//        repeButton.tintColor = UIColor.darkGray
     }
     /*
     // MARK: - Navigation
@@ -72,7 +79,9 @@ class GameGoalViewController: UIViewController {
         {
             if let customizeUI = segue.destination as? GameCustomizeViewController
             {
-            customizeUI.repeNum = repNum
+                customizeUI.repeNum = self.repNum
+                customizeUI.goalType = self.goalType
+                customizeUI.timeLimit = self.timeLimit
 
             //https://stackoverflow.com/questions/35427102/hide-show-tab-bar-when-push-back-swift
 //            self.hidesBottomBarWhenPushed = true

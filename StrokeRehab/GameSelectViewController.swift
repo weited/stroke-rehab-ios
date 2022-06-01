@@ -1,10 +1,3 @@
-//
-//  GameSelectViewController.swift
-//  StrokeRehab
-//
-//  Created by mobiledev on 23/5/2022.
-//
-
 import UIKit
 
 class GameSelectViewController: UIViewController {
