@@ -165,7 +165,7 @@ extension HistoryUIViewController: UITableViewDataSource {
             //populate the cell
             exerciseCell.repeLabel.text = String(exercise.repetitionDone)
             exerciseCell.startAtLabel.text = String(exercise.startAt)
-            exerciseCell.endAtLabel.text = exercise.endAt
+            exerciseCell.endAtLabel.text = exercise.endAt.isEmpty ? "Uncompleted game" : exercise.endAt
         }
         return cell
     }

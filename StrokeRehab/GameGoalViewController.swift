@@ -10,7 +10,6 @@ import UIKit
 class GameGoalViewController: UIViewController {
     
     @IBOutlet weak var repePicker: UIPickerView!
-    
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     

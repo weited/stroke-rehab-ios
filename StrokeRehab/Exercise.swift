@@ -107,36 +107,22 @@ public struct Exercise : Codable
         }
     }
     
-    static func shareStr() -> String {
-//        btnsPressed : [[String:Int]]
-        let btns = [["time":"20s22-028'-232 05123", "check": "false", "btn" : "11" ], ["time":"2222-22'-232 05123", "check": "false", "btn" : "222" ]]
+    func shareRecord() -> String {
+        let gameGoal = String(self.repetitionLimit)
+        let status : String = self.completed ? "completed" : "Not completed"
+        let btns = self.btnPressed
         var displayStr : String = ""
         var btnsStr : String = ""
         
         for btn in btns {
-            let singleBtnStr = "[\(btn["time"]):\(btn["btn"])],"
-            btnsStr.append(singleBtnStr)
+            if let timeStamp = btn["time"], let btnNum = btn["btn"] {
+                let time = timeStamp.components(separatedBy: " ")[1]
+                btnsStr.append("[\(time) : \(btnNum)], ")
+            }
         }
         
-        print("############# \(btnsStr)")
-//
-//        let btnStrings = btns.map{ (btn) -> String in
-//            let btnStr = "[\(btn["time"]):\(btn["btn"])],"
-//            btnpressedStr += btnStr
-////            print(btnStr)
-//            return btnStr
-//        }
-//
-//        print(btns)
-//        displayStr = btnStrings.joined(separator: "\n")
-//////        return btnStr
-////        for btn in btns{
-//////            let key = btn.key
-//////            let value = String(btn.value)
-////            let btnStr = "\(btn.key)    \(btn.value)\n"
-////            displayStr += btnStr
-//////            btnStr.append()
-////        }
+        displayStr = "Game type: \(self.gameGoalType), game goal: \(gameGoal), completition status: \(status), started at: \(self.startAt), end at: \(self.endAt), \(self.repetitionDone) repetitions has done, button pressed: [ \(btnsStr) ]"
+
         return displayStr
     }
     

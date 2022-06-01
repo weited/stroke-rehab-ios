@@ -7,10 +7,12 @@ import UIKit
 struct Const {
     static let collectionName = "exercisesIOS"
     static let goalToCustSegue = "goalToCustomize"
+    static let freeModeToCustSegue = "freeModeToCustSegue"
     static let prescribedCustmToStartSegue = "preCustomToStart"
     static let gameToFinishedSegue = "gameToFinished"
     static let showHistoryDetailSegue = "showHistoryDetailSegue"
     static let deleteRecordSegue = "deleteRecordSegue"
+    static let saveNameSegue = "saveNameSegue"
     static let historyDetailCell = "historyDetailTableViewCell"
 
     enum GoalType : String {

@@ -30,6 +30,8 @@
 		5C93DBA7283F2864009E1DFF /* GameGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93DBA6283F2864009E1DFF /* GameGoalViewController.swift */; };
 		5C93DBA9283F3386009E1DFF /* GameCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93DBA8283F3386009E1DFF /* GameCustomizeViewController.swift */; };
 		5CAA608E2842506700E8D176 /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAA608D2842506700E8D176 /* GamePlayViewController.swift */; };
+		5CF239B428476248004077C3 /* NameChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF239B328476248004077C3 /* NameChangeViewController.swift */; };
+		5CF239B6284774EB004077C3 /* GameModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF239B5284774EB004077C3 /* GameModeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		5C93DBA6283F2864009E1DFF /* GameGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGoalViewController.swift; sourceTree = "<group>"; };
 		5C93DBA8283F3386009E1DFF /* GameCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCustomizeViewController.swift; sourceTree = "<group>"; };
 		5CAA608D2842506700E8D176 /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
+		5CF239B328476248004077C3 /* NameChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameChangeViewController.swift; sourceTree = "<group>"; };
+		5CF239B5284774EB004077C3 /* GameModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeViewController.swift; sourceTree = "<group>"; };
 		F01280D8A4A3D74A724B93A9 /* Pods-StrokeRehab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StrokeRehab.debug.xcconfig"; path = "Target Support Files/Pods-StrokeRehab/Pods-StrokeRehab.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +159,8 @@
 		5CE2972D283E739500E8186E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5CF239B5284774EB004077C3 /* GameModeViewController.swift */,
+				5CF239B328476248004077C3 /* NameChangeViewController.swift */,
 				5C6C7252282573EB00EF9E6E /* HomeViewController.swift */,
 				5C8633BC283AA580008BBE39 /* PrescribedGame */,
 				5CAA608D2842506700E8D176 /* GamePlayViewController.swift */,
@@ -292,11 +298,13 @@
 				5C6C724328256CE900EF9E6E /* ViewController.swift in Sources */,
 				5C8633BE283AACE9008BBE39 /* Exercise.swift in Sources */,
 				5C8633C2283AB4C0008BBE39 /* HistoryUITableViewCell.swift in Sources */,
+				5CF239B6284774EB004077C3 /* GameModeViewController.swift in Sources */,
 				5C8633C0283AB139008BBE39 /* Movie.swift in Sources */,
 				5C4DC19D2843FB7E005FDBFE /* GameDoneViewController.swift in Sources */,
 				5C6C723F28256CE900EF9E6E /* AppDelegate.swift in Sources */,
 				5C8633BA283AA50D008BBE39 /* GameSelectViewController.swift in Sources */,
 				5C93DBA7283F2864009E1DFF /* GameGoalViewController.swift in Sources */,
+				5CF239B428476248004077C3 /* NameChangeViewController.swift in Sources */,
 				5C6C724128256CE900EF9E6E /* SceneDelegate.swift in Sources */,
 				5C8633BB283AA56F008BBE39 /* ModeViewController.swift in Sources */,
 				5C93DBA9283F3386009E1DFF /* GameCustomizeViewController.swift in Sources */,

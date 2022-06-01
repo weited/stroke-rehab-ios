@@ -41,7 +41,9 @@ class HistoryDetailViewController: UIViewController {
             totalPressedNumLabel.text = String(totalPressedNum)
             goalTypeLabel.text = displayExercise.gameGoalType
             goalLimitLabel.text = "\(displayExercise.repetitionLimit)    Repetitions"
-            
+            startAtLabel.text = displayExercise.startAt
+            endAtLabel.text = displayExercise.endAt
+            statusLabel.text = displayExercise.completed ? "Completed" : "Uncompleted"
         }
         
         
@@ -68,9 +70,15 @@ class HistoryDetailViewController: UIViewController {
     
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
+        var shareText = ""
         if let displayExercise = exercise {
-            Exercise.shareStr()
+            shareText = displayExercise.shareRecord()
         }
+        let shareViewController = UIActivityViewController(
+            activityItems: [shareText],
+            applicationActivities: [])
+        
+        present(shareViewController, animated: true, completion: nil)
     }
     
     func deleteRecord(_ sender: Any) {

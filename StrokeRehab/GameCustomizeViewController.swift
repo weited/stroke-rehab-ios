@@ -15,7 +15,7 @@ class GameCustomizeViewController: UIViewController {
     var isBtnRandom : Bool = true
     var isBtnIndicator : Bool = true
     var btnNum : Int = 3
-    var btnSize : Int = 50
+    var btnSize : Int = 60
     
     let btnNumRange = ["2","3","4","5"]
     
@@ -34,8 +34,8 @@ class GameCustomizeViewController: UIViewController {
         
         demoBtn.layer.cornerRadius = CGFloat(btnSize/2)
         demoBtn.clipsToBounds = true
-        demoBtn.frame = CGRect(x: 50, y: 200, width: btnSize, height: btnSize)
-        print("corner \(demoBtn.layer.cornerRadius)")
+        demoBtn.frame = CGRect(x: 180, y: 480, width: btnSize, height: btnSize)
+        print("is free mode ?  \(isFreeMode)")
         // Do any additional setup after loading the view.
     }
     
@@ -48,7 +48,7 @@ class GameCustomizeViewController: UIViewController {
     }
     
     @IBAction func btnSizeSliderchanged(_ sender: Any) {
-        btnSize = Int(btnSizeSlider.value)*50
+        btnSize = Int(btnSizeSlider.value)
         demoBtn.bounds.size.height = CGFloat(btnSize)
         demoBtn.bounds.size.width = CGFloat(btnSize)
         demoBtn.layer.cornerRadius = CGFloat(btnSize/2)

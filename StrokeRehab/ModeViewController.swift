@@ -15,7 +15,11 @@ class ModeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+//    @IBAction func freeModeTapped(_ sender: UIButton) {
+//        print("!!!!!!!!!!!!!!")
+//        self.performSegue(withIdentifier: Const.freeModeToCustSegue, sender: nil)
+//
+//    }
     /*
     // MARK: - Navigation
 
@@ -25,5 +29,22 @@ class ModeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == Const.freeModeToCustSegue
+//        {
+//            if let gameCust = segue.destination as? GameCustomizeViewController
+//            {
+//                gameCust.isFreeMode = true
+//            }
+//        }
+//    }//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == Const.freeModeToCustSegue
+    //        {
+    //            if let gameCust = segue.destination as? GameCustomizeViewController
+    //            {
+    //                gameCust.isFreeMode = true
+    //            }
+    //        }
+    //    }
 
 }

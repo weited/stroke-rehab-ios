@@ -47,6 +47,7 @@ class GamePlayViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         
+        print("game play \(isFreeMode)")
         //        self.title = "New title"
         goalLabel.text = isFreeMode ? "Free Mode" : String(repeNum)
         
@@ -92,6 +93,26 @@ class GamePlayViewController: UIViewController {
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
     }
+    
+    @IBAction func endGameBtnTapped(_ sender: Any) {
+        timer.invalidate()
+        let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to end?", preferredStyle: .alert)
+        
+        let end = UIAlertAction(title: "End", style: .destructive, handler: { (action) -> Void in
+            self.finishGame(isCompleted: false)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            self.startTimer()
+            print("Cancel button tapped")
+        }
+        
+        dialogMessage.addAction(end)
+        dialogMessage.addAction(cancel)
+        
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
     
     @objc func timerForRepetition() {
         timeTakenForRepe += 1
@@ -160,6 +181,11 @@ class GamePlayViewController: UIViewController {
             sender.backgroundColor = Const.BtnColors.normal
         }
         Exercise.addBtnPressedToDB(documentId: docId, repetitionDone: roundsDone, btnPressed: ["time" : getTimeStamp(), "btn":String(sender.tag),"check":pressCheck])
+    }
+    
+    func startTimer() {
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
     }
     
     func resetBtn() {
@@ -254,7 +280,7 @@ class GamePlayViewController: UIViewController {
     func finishGame(isCompleted compeleteStatus : Bool = false) {
         gameEndAt = getTimeStamp()
         Exercise.updateDocGameFinished(documentId: docId, isCompleted: compeleteStatus, endAt: gameEndAt, repetitionsDone: roundsDone)
-        
+        timer.invalidate()
         self.performSegue(withIdentifier: Const.gameToFinishedSegue, sender: nil)
     }
     /*

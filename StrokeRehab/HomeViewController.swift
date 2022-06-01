@@ -10,12 +10,21 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class HomeViewController: UIViewController {
-
+    let defalutFile = UserDefaults.standard
     @IBOutlet weak var nameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameLabel.text = defalutFile.string(forKey: "username")
+    }
+    
+    @IBAction func unwindToHome(sender: UIStoryboardSegue)
+    {
+        if let nameChangeScreen = sender.source as? NameChangeViewController
+        {
+            nameLabel.text = defalutFile.string(forKey: "username")
+        }
     }
     
         
