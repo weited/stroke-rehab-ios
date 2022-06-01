@@ -170,12 +170,17 @@ class GamePlayViewController: UIViewController {
                 roundsDone += 1
                 roundsDoneLabel.text = String(roundsDone)
                 
-                // Finish Game and Nav to next UI
-                if roundsDone == repeNum {
-                    finishGame(isCompleted: true)
-                    print("You finished!")
-                    return
+                if isFreeMode == true {
+                    
+                } else {
+                    // Finish Game and Nav to next UI
+                    if roundsDone == repeNum {
+                        finishGame(isCompleted: true)
+                        print("You finished!")
+                        return
+                    }
                 }
+
                 
                 resetBtn()
                 // random button position
