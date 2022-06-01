@@ -585,6 +585,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Repetition"/>
+                                                <connections>
+                                                    <action selector="repeBtnTapped:" destination="aH2-rb-InD" eventType="touchUpInside" id="ARA-kl-8vg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2s-bJ-D3E">
                                                 <rect key="frame" x="237" y="38" width="121" height="31"/>
@@ -592,17 +595,20 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Time Limit">
                                                     <backgroundConfiguration key="background"/>
-                                                    <color key="baseBackgroundColor" systemColor="systemGray4Color"/>
+                                                    <color key="baseBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="timeBtnTapped:" destination="aH2-rb-InD" eventType="touchUpInside" id="qez-xH-qFa"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smH-Pj-rEM">
-                                                <rect key="frame" x="185" y="131" width="45" height="28"/>
+                                                <rect key="frame" x="99" y="131" width="216" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repetitions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnw-Fg-evC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Limit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnw-Fg-evC">
                                                 <rect key="frame" x="150" y="186" width="114" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -653,9 +659,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Game goal" id="c29-Cx-OWq"/>
                     <connections>
-                        <outlet property="labelTitle" destination="1ke-Rn-jjQ" id="fDU-5L-rXW"/>
+                        <outlet property="goalDisplayLabel" destination="smH-Pj-rEM" id="PTP-FO-JNm"/>
+                        <outlet property="goalPicker" destination="Qy9-Pe-SGc" id="ol5-P2-77U"/>
                         <outlet property="nextButton" destination="0M3-Lv-cJY" id="77h-6K-BP5"/>
-                        <outlet property="repePicker" destination="Qy9-Pe-SGc" id="SNb-X6-B25"/>
+                        <outlet property="repeButton" destination="OpH-Lx-deu" id="3cm-hL-ez9"/>
+                        <outlet property="timeButton" destination="b2s-bJ-D3E" id="wSh-UP-aMc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tua-1L-3aQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1195,9 +1203,6 @@ You have finished the exercise. </string>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

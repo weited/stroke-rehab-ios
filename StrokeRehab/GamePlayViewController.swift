@@ -18,7 +18,7 @@ class GamePlayViewController: UIViewController {
     var isBtnIndicator : Bool = true
     var btnNum : Int = 3
     var btnSize : Int = 50
-    var timeLimit : Int = 0
+    var timeLimit : Int = 10
     var isCompleted : Bool = false
     
     var docId : String = ""
@@ -90,8 +90,7 @@ class GamePlayViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         print("did appear")
-        timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
+        startTimer()
     }
     
     @IBAction func endGameBtnTapped(_ sender: Any) {
@@ -117,10 +116,14 @@ class GamePlayViewController: UIViewController {
     @objc func timerForRepetition() {
         timeTakenForRepe += 1
         self.title = String(timeTakenForRepe)
+        if goalType == Const.GoalType.timeLimit.rawValue {
+            if timeTakenForRepe == timeLimit { finishGame(isCompleted: true) }
+        }
     }
     
     @objc func timerForTimeLimit() {
         timeLimit -= 1
+        print("%%%%%%%%%%%%%% \(goalType) and \(timeLimit)")
         self.title = String(timeLimit)
         if timeLimit == 0 {
             timer.invalidate()
