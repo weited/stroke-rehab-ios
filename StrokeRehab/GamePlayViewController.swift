@@ -31,6 +31,7 @@ class GamePlayViewController: UIViewController {
     var secBtnUIGroup : [UIButton] = []
     var isOverlap : Bool = false
     
+    var pressedBtn : [Int] = []
     var timer = Timer()
     var timeCuntDown : Int = 30
     
@@ -218,6 +219,13 @@ class GamePlayViewController: UIViewController {
     }
     
     @objc func twoButtonDownAction(sender: UIButton!) {
+        if pressedBtn.isEmpty {
+            pressedBtn.append(sender.tag)
+            print("Empty \(pressedBtn) and tag \(sender.tag)")
+        } else {
+            print("Same number \(pressedBtn) and tag \(sender.tag)")
+//            if sender.tag == pressedBtn.first { print("Same number \(pressedBtn) and tag \(sender.tag)")}
+        }
         print("pressed!!!!!!!!!! \(sender.tag)")
     }
     
@@ -236,7 +244,7 @@ class GamePlayViewController: UIViewController {
             //            let button = btnAreaView.viewWithTag(index) as? UIButton
             let button = btnUIGroup[index-1]
 //            button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: btnSize, height: btnSize)
-            button.setTitle("\(index)", for: .normal)
+            button.setTitle("\(index>btnNum ? (index - btnNum) : index)", for: .normal)
 //            button.titleLabel?.font = UIFont(name: "System", size: btnsize/2)
             if index % btnNum == 1 && isBtnIndicator == true {
                 button.backgroundColor = Const.BtnColors.indicator
