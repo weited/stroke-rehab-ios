@@ -352,9 +352,11 @@
                         <outlet property="statusLabel" destination="djK-1n-PQi" id="Wws-qj-Wng"/>
                         <outlet property="tableView" destination="r9v-Nm-d1Y" id="MJu-wr-BPj"/>
                         <outlet property="totalPressedNumLabel" destination="daR-AP-c1r" id="YaG-Oo-Vc5"/>
+                        <segue destination="IDo-xf-y7Z" kind="unwind" identifier="deleteRecordSegue" unwindAction="unwindToHistoryListWithSender:" id="ELv-gN-R1V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNO-Wm-gYH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="IDo-xf-y7Z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4686.9565217391309" y="1030.5803571428571"/>
         </scene>

@@ -168,6 +168,7 @@ class GamePlayViewController: UIViewController {
             let button = btnUIGroup[index-1]
 //            button.frame = CGRect(x: Int(CGFloat( arc4random_uniform( UInt32( floor( width  ) ) ) )), y: Int(CGFloat( arc4random_uniform( UInt32( floor( height ) ) ) )), width: btnSize, height: btnSize)
             button.setTitle("\(index)", for: .normal)
+//            button.titleLabel?.font = UIFont(name: "System", size: btnsize/2)
             if index == 1 && isBtnIndicator == true {
                 button.backgroundColor = Const.BtnColors.indicator
             }

@@ -46,6 +46,7 @@ class HistoryUIViewController: UIViewController {
             else
             {
                 self.exercises.removeAll()
+                self.totalPressed = 0
                 for document in result!.documents
                 {
                     let conversionResult = Result
@@ -78,8 +79,14 @@ class HistoryUIViewController: UIViewController {
             totalPressed += btn.btnPressed.count
         }
         
+        print("################### \(totalPressed)")
+        
         totalAtmptLabel.setTitle("\(numOfExercises)", for: .normal)
         totalBtnLabel.setTitle("\(totalPressed)", for: .normal)
+    }
+    
+    @IBAction func unwindToHistoryList(sender: UIStoryboardSegue)
+    {
     }
     
 
