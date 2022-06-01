@@ -68,6 +68,9 @@ class HistoryDetailViewController: UIViewController {
     
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
+        if let displayExercise = exercise {
+            Exercise.shareStr()
+        }
     }
     
     func deleteRecord(_ sender: Any) {
