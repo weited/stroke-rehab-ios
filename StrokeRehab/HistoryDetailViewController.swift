@@ -12,6 +12,7 @@ class HistoryDetailViewController: UIViewController {
     var exercise : Exercise?
     var exerciseIndex : Int?
     var btnPressedArry = [[String : String]]()
+    var docId : String?
     
     @IBOutlet weak var goalTypeLabel: UILabel!
     @IBOutlet weak var goalLimitLabel: UILabel!
@@ -31,6 +32,7 @@ class HistoryDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let displayExercise = exercise
         {
+            docId = displayExercise.id
             btnPressedArry = displayExercise.btnPressed
             let totalPressedNum = displayExercise.btnPressed.count
             repeDoneLabel.text = String(displayExercise.repetitionDone)
@@ -41,7 +43,17 @@ class HistoryDetailViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+        if let id = docId {
+            Exercise.deleteExerciseById(documentId: id)
+            //
+        }
+    }
+    
 
+    @IBAction func shareBtnTapped(_ sender: UIButton) {
+    }
     /*
     // MARK: - Navigation
 

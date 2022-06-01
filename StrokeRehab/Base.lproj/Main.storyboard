@@ -316,11 +316,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="182" height="50"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="SHARE"/>
+                                        <connections>
+                                            <action selector="shareBtnTapped:" destination="mYP-y4-mfW" eventType="touchUpInside" id="vAv-hu-5AC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urP-Wj-evP">
                                         <rect key="frame" x="192" y="0.0" width="182" height="50"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="DELETE"/>
+                                        <connections>
+                                            <action selector="deleteBtnTapped:" destination="mYP-y4-mfW" eventType="touchUpInside" id="grQ-yM-zWS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
