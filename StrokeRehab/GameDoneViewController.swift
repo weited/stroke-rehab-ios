@@ -42,11 +42,17 @@ class GameDoneViewController: UIViewController,
         {
             startTimeLabel.text = infor.startAt
             endTimeLabel.text = infor.endAt
-            gameModeLabel.text = isFreeMode ? "Free Mode" : "Goal Mode"
-            goalTypeLabel.text = infor.gameGoalType == Const.GoalType.repetition.rawValue ? "\(repeNumber)   Repetitions" : "\(timeLimit) Seconds Time Limit"
             repeNumLabel.text = String(infor.repetitionDone)
             timeTakenLabel.text = String(infor.timeTakenForRepe!)
-            print("@@@@@@@@@@@@@@\(infor.timeLimit!)")
+            
+            if infor.isFreeMode == true {
+                gameModeLabel.text = "Free Mode"
+                goalTypeLabel.text = "Unlimited"
+                
+            } else {
+                gameModeLabel.text = "Goal Mode"
+                goalTypeLabel.text = infor.gameGoalType == Const.GoalType.repetition.rawValue ? "\(infor.repetitionLimit)   Repetitions" : "\(infor.timeLimit) Seconds Time Limit"
+            }
         }
         
 //        startTimeLabel.text = gameStartAt

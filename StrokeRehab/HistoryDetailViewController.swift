@@ -39,11 +39,21 @@ class HistoryDetailViewController: UIViewController {
             let totalPressedNum = displayExercise.btnPressed.count
             repeDoneLabel.text = String(displayExercise.repetitionDone)
             totalPressedNumLabel.text = String(totalPressedNum)
-            goalTypeLabel.text = displayExercise.gameGoalType
-            goalLimitLabel.text = "\(displayExercise.repetitionLimit)    Repetitions"
+
+
             startAtLabel.text = displayExercise.startAt
             endAtLabel.text = displayExercise.endAt
-            statusLabel.text = displayExercise.completed ? "Completed" : "Uncompleted"
+
+            
+            if displayExercise.isFreeMode == true {
+                goalTypeLabel.text = "Free play mode"
+                goalLimitLabel.text = "Unlimited"
+                statusLabel.text = "Free play"
+            } else {
+                goalTypeLabel.text = displayExercise.gameGoalType
+                goalLimitLabel.text = "\(displayExercise.repetitionLimit)    Repetitions"
+                statusLabel.text = displayExercise.completed ? "Completed" : "Uncompleted"
+            }
         }
         
         

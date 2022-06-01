@@ -18,7 +18,7 @@ public struct Exercise : Codable
     
     
     var id : String?
-    var isFreeMode : Bool? = false
+    var isFreeMode : Bool = false
     var gameGoalType : String = Const.GoalType.repetition.rawValue
     var repetitionLimit : Int = 0
     var timeLimit : Int? = 0
