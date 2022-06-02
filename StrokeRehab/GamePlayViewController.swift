@@ -20,15 +20,11 @@ class GamePlayViewController: UIViewController {
     var gameEndAt : String = ""
     var timeTakenForRepe : Int = 0
     
-//    var targetBtns : [Int] = [1,2,3]
-//    var randomBtns : [Int] = [2,1,3]
-    
     var currentBtn : Int = 1
     var roundsDone : Int = 0
     
     var btnUIGroup : [UIButton] = []
     var doubleBtn : Int = 1
-    var secBtnUIGroup : [UIButton] = []
     var isOverlap : Bool = false
     
     var pressedBtn : [Int] = []
@@ -45,9 +41,11 @@ class GamePlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
+        
         timeCuntDown = timeLimit
-        print("is prescribed game ??????? \(isPrescribedGame)")
-        //        self.title = "New title"
+        doubleBtn = isPrescribedGame ? 1 : 2
+        self.docId = getTimeStamp(format: "gameId")
+        gameStartAt = getTimeStamp()
         
         gameDescLabel.text = isPrescribedGame ? "(Tap button in order)" : "(Tap two buttons with same number)"
         
@@ -60,37 +58,12 @@ class GamePlayViewController: UIViewController {
                 self.title = String(timeLimit)
                 goalLabel.text = "\(timeLimit) S"
             }
-            
         }
-        
-        
-        gameStartAt = getTimeStamp()
-        
-//        timer.invalidate()
-        
-        self.docId = getTimeStamp(format: "gameId")
-        doubleBtn = isPrescribedGame ? 1 : 2
+
         // create an empty document
         createGameDoc()
+        //create button group
         createBtnGroup()
-        if isPrescribedGame {
-//            createBtnGroup()
-            
-        } else {
-//            btnUIGroup = createBtnGroup(isPscGame: false, isSecondGroup: false)
-//            secBtnUIGroup = createBtnGroup(isPscGame: false, isSecondGroup: true)
-        }
-        
-        
-        
-      
-        
-        print("############### \(btnUIGroup.count)")
-        
-      
-        
-
-
         resetBtn()
         // random button position first then check if overlap
         if isBtnRandom { reorderBtnPosition() }
@@ -102,7 +75,7 @@ class GamePlayViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("did appear")
+//        print("did appear")
         startTimer()
     }
     

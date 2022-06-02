@@ -31,14 +31,12 @@ class GameCustomizeViewController: UIViewController {
         demoBtn.layer.cornerRadius = CGFloat(btnSize/2)
         demoBtn.clipsToBounds = true
         demoBtn.frame = CGRect(x: 180, y: 480, width: btnSize, height: btnSize)
-        print("is free mode ?  \(timeLimit)")
         
         if isPrescribedGame == false {
             title = "Game Two Customization"
             btnRandomSwitch.isUserInteractionEnabled = false
             btnNumPicker.isUserInteractionEnabled = false
         }
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func toggleBtnRandom(_ sender: Any) {
@@ -56,17 +54,11 @@ class GameCustomizeViewController: UIViewController {
         demoBtn.layer.cornerRadius = CGFloat(btnSize/2)
         print(btnSize)
     }
-    //    @IBAction func toggleBtnRandom(_ sender: UISwitch) {
-//        isBtnRandom = btnRandomSwitch.isOn
-//        print("btn random state: \(isBtnRandom)")
-//    }
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         if segue.identifier == Const.prescribedCustmToStartSegue
         {
             if let gamePlayScreen = segue.destination as? GamePlayViewController
@@ -85,7 +77,6 @@ class GameCustomizeViewController: UIViewController {
     }
 }
 
-
 extension GameCustomizeViewController : UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -102,8 +93,6 @@ extension GameCustomizeViewController : UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        labelTitle.text = repRange[row]
         btnNum = Int(btnNumRange[row]) ?? 3
-        print("you selected \(btnNumRange[row])")
     }
 }
