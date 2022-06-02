@@ -13,6 +13,8 @@ struct Const {
     static let showHistoryDetailSegue = "showHistoryDetailSegue"
     static let deleteRecordSegue = "deleteRecordSegue"
     static let saveNameSegue = "saveNameSegue"
+    static let dGameToCustSegue = "dGameToCustSegue"
+    
     static let historyDetailCell = "historyDetailTableViewCell"
 
     enum GoalType : String {

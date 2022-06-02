@@ -110,7 +110,7 @@ extension GameGoalViewController : UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if goalType == Const.GoalType.repetition.rawValue {
             goalDisplayLabel.text = goalPickerRange[row]
-            repNum = row
+            repNum = (row + 1)
             print("you selected \(row+1)")
         } else {
             goalDisplayLabel.text = goalPickerRange[row]

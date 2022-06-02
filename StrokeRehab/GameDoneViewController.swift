@@ -36,7 +36,7 @@ class GameDoneViewController: UIViewController,
             startTimeLabel.text = infor.startAt
             endTimeLabel.text = infor.endAt
             repeNumLabel.text = String(infor.repetitionDone)
-            timeTakenLabel.text = "\(infor.timeTakenForRepe!) Seconds"
+            timeTakenLabel.text = "\(infor.timeTakenForRepe!)                        Seconds"
             
             if infor.isFreeMode == true {
                 gameModeLabel.text = "Free Mode"

@@ -4,7 +4,7 @@ import FirebaseFirestoreSwift
 
 class GamePlayViewController: UIViewController {
     
-    var isPrescribedGame : Bool = false
+    var isPrescribedGame : Bool = true
     var goalType : String = Const.GoalType.repetition.rawValue
     var repeNum : Int = 3
     var isFreeMode : Bool = false
@@ -12,7 +12,7 @@ class GamePlayViewController: UIViewController {
     var isBtnIndicator : Bool = true
     var btnNum : Int = 2
     var btnSize : Int = 50
-    var timeLimit : Int = 10
+    var timeLimit : Int = 30
     var isCompleted : Bool = false
     
     var docId : String = ""
@@ -39,14 +39,18 @@ class GamePlayViewController: UIViewController {
     
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var roundsDoneLabel: UILabel!
+    @IBOutlet weak var gameDescLabel: UILabel!
     @IBOutlet weak var btnAreaView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         timeCuntDown = timeLimit
-        print("game play \(goalType)")
+        print("is prescribed game ??????? \(isPrescribedGame)")
         //        self.title = "New title"
+        
+        gameDescLabel.text = isPrescribedGame ? "(Tap button in order)" : "(Tap two buttons with same number)"
+        
         if isFreeMode == true {
             goalLabel.text = "Free Mode"
         } else {
@@ -83,38 +87,7 @@ class GamePlayViewController: UIViewController {
         
         print("############### \(btnUIGroup.count)")
         
-        func createBtnGroup() {
-//            let i = isPrescribedGame ? 1 : 2
-            for index in 1...(btnNum * doubleBtn) {
-                btnAreaView.layoutIfNeeded()
-                let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
-                let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
-                
-                let eachHeight = height/CGFloat(btnNum)
-                
-                let button = UIButton()
-                button.frame = CGRect(x: Int(width/2), y: Int(eachHeight) * index - Int(eachHeight)/2, width: btnSize, height: btnSize)
-                button.layer.cornerRadius = CGFloat(btnSize/2)
-                
-                if isPrescribedGame == true {
-                    button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-                    button.addTarget(self, action: #selector(buttonDownAction), for: .touchDown)
-                    button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpOutside)
-                } else {
-                    button.addTarget(self, action: #selector(twoButtonDownAction), for: .touchDown)
-                    button.addTarget(self, action: #selector(twoBtnUpInsideAction), for: .touchUpInside)
-                    
-                    button.addTarget(self, action: #selector(twoBtnUpOutsideAction), for: .touchUpOutside)
-
-                }
-                
-                button.tag = index
-//                isSecondGroup ? (button.tag = index + 5) : (button.tag = index)
-
-                btnAreaView.addSubview(button)
-                btnUIGroup.append(button)
-            }
-        }
+      
         
 
 
@@ -153,6 +126,16 @@ class GamePlayViewController: UIViewController {
     }
     
     
+    // MARK: - Timer
+    func startTimer() {
+        timer.invalidate()
+        if goalType == Const.GoalType.repetition.rawValue {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
+        } else {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForTimeLimit), userInfo: nil, repeats: true)
+        }
+    }
+    
     @objc func timerForRepetition() {
         timeTakenForRepe += 1
         self.title = String(timeTakenForRepe)
@@ -167,6 +150,7 @@ class GamePlayViewController: UIViewController {
         }
     }
     
+    // MARK: - Game One Button Action
     @objc func buttonDownAction(sender: UIButton!) {
         print("Touch Down Action \(sender.tag)")
         if sender.tag != currentBtn {
@@ -222,6 +206,7 @@ class GamePlayViewController: UIViewController {
         Exercise.addBtnPressedToDB(documentId: docId, repetitionDone: roundsDone, btnPressed: ["time" : getTimeStamp(), "btn":String(sender.tag),"check":pressCheck])
     }
     
+    // MARK: - Game Two Button Action
     @objc func twoButtonDownAction(sender: UIButton!) {
 //        pressedBtn.append(sender.tag)
         print("current btn number is : \(currentBtn)")
@@ -239,7 +224,7 @@ class GamePlayViewController: UIViewController {
                 colorBtn(btnTag: pressedBtn.first!, colorType: "normal")
                 
                 //set next btn indication
-                if isBtnIndicator == true {
+                if isBtnIndicator == true && currentBtn < btnNum {
                     colorBtn(btnTag: sender.tag + 1, colorType: "indicator")
                     colorBtn(btnTag: pressedBtn.first! + 1, colorType: "indicator")
                 }
@@ -284,14 +269,38 @@ class GamePlayViewController: UIViewController {
         print("up out side \(pressedBtn)")
     }
     
-    func startTimer() {
-        timer.invalidate()
-        if goalType == Const.GoalType.repetition.rawValue {
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForRepetition), userInfo: nil, repeats: true)
-        } else {
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerForTimeLimit), userInfo: nil, repeats: true)
+    // MARK: Buttons
+    func createBtnGroup() {
+//            let i = isPrescribedGame ? 1 : 2
+        for index in 1...(btnNum * doubleBtn) {
+            btnAreaView.layoutIfNeeded()
+            let height = btnAreaView!.frame.size.height - CGFloat(btnSize)
+            let width = btnAreaView!.frame.size.width - CGFloat(btnSize)
+            
+            let eachHeight = height/CGFloat(btnNum)
+            
+            let button = UIButton()
+            button.frame = CGRect(x: Int(width/2), y: Int(eachHeight) * index - Int(eachHeight)/2, width: btnSize, height: btnSize)
+            button.layer.cornerRadius = CGFloat(btnSize/2)
+            
+            if isPrescribedGame == true {
+                button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+                button.addTarget(self, action: #selector(buttonDownAction), for: .touchDown)
+                button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpOutside)
+            } else {
+                button.addTarget(self, action: #selector(twoButtonDownAction), for: .touchDown)
+                button.addTarget(self, action: #selector(twoBtnUpInsideAction), for: .touchUpInside)
+                
+                button.addTarget(self, action: #selector(twoBtnUpOutsideAction), for: .touchUpOutside)
+
+            }
+            
+            button.tag = index
+//                isSecondGroup ? (button.tag = index + 5) : (button.tag = index)
+
+            btnAreaView.addSubview(button)
+            btnUIGroup.append(button)
         }
-        
     }
     
     func resetBtn() {
@@ -403,19 +412,10 @@ class GamePlayViewController: UIViewController {
         timer.invalidate()
         self.performSegue(withIdentifier: Const.gameToFinishedSegue, sender: nil)
     }
-    /*
+
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    // Get the new view controller using segue.destination.
-    // Pass the selected object to the new view controller.
         if segue.identifier == Const.gameToFinishedSegue
         {
             if let gameFinishedScreen = segue.destination as? GameDoneViewController

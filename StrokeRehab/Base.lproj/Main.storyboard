@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NKY-nI-fmA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ug4-G8-m4G">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -290,11 +290,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVR-js-VQx">
-                                                    <rect key="frame" x="304" y="6" width="32" height="32"/>
+                                                    <rect key="frame" x="304" y="6" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" title="8">
-                                                        <backgroundConfiguration key="background" cornerRadius="32"/>
+                                                        <backgroundConfiguration key="background" cornerRadius="35"/>
                                                     </buttonConfiguration>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFX-dl-nVU">
@@ -360,11 +360,11 @@
             </objects>
             <point key="canvasLocation" x="4710" y="1448"/>
         </scene>
-        <!--History-->
+        <!--Navigation Controller-->
         <scene sceneID="xU6-9u-rdi">
             <objects>
                 <navigationController id="Mlt-9Y-7R1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="History" id="b4L-Se-mM4"/>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="b4L-Se-mM4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dIK-Zk-8Im">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -381,7 +381,7 @@
         <scene sceneID="2ij-Y6-Niv">
             <objects>
                 <navigationController id="N1i-Oz-KIa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="kC9-BS-cfx"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="kC9-BS-cfx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0tT-GB-g2P">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -393,45 +393,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBp-rW-tY5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2435" y="-717"/>
-        </scene>
-        <!--Name View Controller-->
-        <scene sceneID="7nu-32-Bra">
-            <objects>
-                <viewController id="fct-j9-oJJ" customClass="NameViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dr4-3t-lof">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7nc-Hh-d5m">
-                                <rect key="frame" x="8" y="168" width="398" height="47"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input your name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8o-bX-eWi">
-                                        <rect key="frame" x="0.0" y="0.0" width="398" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4E7-2D-Ld7">
-                                        <rect key="frame" x="0.0" y="20.5" width="398" height="26.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="diE-nD-0nh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="7nc-Hh-d5m" firstAttribute="top" secondItem="diE-nD-0nh" secondAttribute="top" constant="80" id="6cu-LN-nwQ"/>
-                            <constraint firstItem="7nc-Hh-d5m" firstAttribute="leading" secondItem="diE-nD-0nh" secondAttribute="leading" constant="8" id="7gP-8V-dii"/>
-                            <constraint firstItem="diE-nD-0nh" firstAttribute="trailing" secondItem="7nc-Hh-d5m" secondAttribute="trailing" constant="8" id="RIQ-xO-Ruj"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="XXw-aq-TFU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rSe-4z-5ig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6387" y="841"/>
         </scene>
         <!--Game Mode-->
         <scene sceneID="0pf-hO-XBG">
@@ -482,7 +443,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klb-J3-hHR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5275" y="-72"/>
+            <point key="canvasLocation" x="5378" y="-254"/>
         </scene>
         <!--Game goal-->
         <scene sceneID="cax-4X-q5u">
@@ -604,9 +565,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tua-1L-3aQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6605.7971014492759" y="-286.60714285714283"/>
+            <point key="canvasLocation" x="6652" y="-587"/>
         </scene>
-        <!--Customization-->
+        <!--Game One Customization-->
         <scene sceneID="Elc-5T-pmS">
             <objects>
                 <viewController id="YeF-p0-CWO" customClass="GameCustomizeViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
@@ -703,7 +664,7 @@
                             <constraint firstItem="rAa-So-on5" firstAttribute="trailing" secondItem="tvy-lE-3nV" secondAttribute="trailing" constant="20" id="wZe-3q-dPb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Customization" id="Okk-Sj-PPK"/>
+                    <navigationItem key="navigationItem" title="Game One Customization" id="Okk-Sj-PPK"/>
                     <connections>
                         <outlet property="btnIndicatorSwitch" destination="a7V-uP-5rN" id="QMm-qQ-jUB"/>
                         <outlet property="btnNumPicker" destination="5Zi-z1-N8E" id="6hS-xt-jy7"/>
@@ -714,18 +675,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48I-yx-ZX6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7834.7826086956529" y="142.63392857142856"/>
+            <point key="canvasLocation" x="7661" y="319"/>
         </scene>
-        <!--Game-->
+        <!--Start !-->
         <scene sceneID="zcn-b3-q8S">
             <objects>
-                <viewController id="NKY-nI-fmA" customClass="GamePlayViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="NKY-nI-fmA" customClass="GamePlayViewController" customModule="StrokeRehab" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xUy-gR-4zC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="THZ-mG-fb2">
-                                <rect key="frame" x="20" y="88" width="374" height="41"/>
+                                <rect key="frame" x="20" y="88" width="374" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You reached:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0p-B4-MSw">
@@ -756,11 +717,17 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Press buttons with same number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVj-Ob-9cr">
+                                        <rect key="frame" x="0.0" y="40" width="366" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3R-0o-2wJ">
-                                <rect key="frame" x="20" y="137" width="374" height="676"/>
+                                <rect key="frame" x="20" y="157" width="374" height="680"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                         </subviews>
@@ -768,7 +735,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Game" id="h2d-MU-nrx">
+                    <navigationItem key="navigationItem" title="Start !" id="h2d-MU-nrx">
                         <barButtonItem key="rightBarButtonItem" title="End Game" id="Jqv-eu-9Vw">
                             <connections>
                                 <action selector="endGameBtnTapped:" destination="NKY-nI-fmA" id="Mon-Ew-4UG"/>
@@ -778,6 +745,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnAreaView" destination="s3R-0o-2wJ" id="lYy-Oe-Xab"/>
+                        <outlet property="gameDescLabel" destination="hVj-Ob-9cr" id="DNP-jp-JC2"/>
                         <outlet property="goalLabel" destination="RPm-i1-jYK" id="cub-55-RNy"/>
                         <outlet property="roundsDoneLabel" destination="dAl-z5-ad1" id="irj-nz-d3C"/>
                         <segue destination="ITK-Fs-C2n" kind="show" identifier="gameToFinished" id="cPp-d4-o4t"/>
@@ -885,8 +853,8 @@ You have finished the exercise. </string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ac-4M-Hfr">
-                                        <rect key="frame" x="167" y="228" width="134" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label " textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ac-4M-Hfr">
+                                        <rect key="frame" x="167" y="228" width="190" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -899,7 +867,7 @@ You have finished the exercise. </string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01n-0T-daO">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01n-0T-daO">
                                         <rect key="frame" x="167" y="197" width="99" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1054,11 +1022,11 @@ You have finished the exercise. </string>
             </objects>
             <point key="canvasLocation" x="4352" y="-717"/>
         </scene>
-        <!--Start-->
+        <!--Play-->
         <scene sceneID="jjY-e2-pac">
             <objects>
                 <navigationController id="zBs-nX-bvW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Start" id="gSH-qC-WxC"/>
+                    <tabBarItem key="tabBarItem" title="Play" image="play.fill" catalog="system" id="gSH-qC-WxC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hYb-yJ-SMN">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1101,7 +1069,7 @@ You have finished the exercise. </string>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Game Two" buttonSize="large"/>
                                         <connections>
-                                            <segue destination="fct-j9-oJJ" kind="show" id="r6g-QJ-NsU"/>
+                                            <segue destination="YeF-p0-CWO" kind="show" identifier="dGameToCustSegue" id="j3l-qY-3Df"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1124,9 +1092,11 @@ You have finished the exercise. </string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Lxx-Xv-pes"/>
+        <segue reference="1EK-yj-nFY"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <systemColor name="secondarySystemFillColor">
             <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

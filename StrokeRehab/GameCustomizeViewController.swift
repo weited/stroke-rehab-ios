@@ -2,6 +2,7 @@ import UIKit
 
 class GameCustomizeViewController: UIViewController {
 
+    var isPrescribedGame : Bool = true
     var goalType : String = Const.GoalType.repetition.rawValue
     var repeNum : Int = 3
     var timeLimit : Int = 30
@@ -22,6 +23,7 @@ class GameCustomizeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         btnNumPicker.dataSource = self
         btnNumPicker.delegate = self
         btnNumPicker.selectRow(1, inComponent: 0, animated: false)
@@ -30,6 +32,12 @@ class GameCustomizeViewController: UIViewController {
         demoBtn.clipsToBounds = true
         demoBtn.frame = CGRect(x: 180, y: 480, width: btnSize, height: btnSize)
         print("is free mode ?  \(timeLimit)")
+        
+        if isPrescribedGame == false {
+            title = "Game Two Customization"
+            btnRandomSwitch.isUserInteractionEnabled = false
+            btnNumPicker.isUserInteractionEnabled = false
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -63,6 +71,7 @@ class GameCustomizeViewController: UIViewController {
         {
             if let gamePlayScreen = segue.destination as? GamePlayViewController
             {
+                gamePlayScreen.isPrescribedGame = isPrescribedGame
                 gamePlayScreen.goalType = goalType
                 gamePlayScreen.repeNum = repeNum
                 gamePlayScreen.timeLimit = timeLimit
