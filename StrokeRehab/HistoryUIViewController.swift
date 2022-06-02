@@ -15,12 +15,10 @@ class HistoryUIViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("inside DidLoad \(numOfExercises)")
         // Do any additional setup after loading the view.
         historyTableView.dataSource = self
-        
+
         fetchHistory()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,7 +28,6 @@ class HistoryUIViewController: UIViewController {
     func fetchHistory() {
         let db = Firestore.firestore()
         let exerciseCollection = db.collection(Const.collectionName)
-        
         exerciseCollection.getDocuments() { (result, err) in
             if let err = err
             {
@@ -58,7 +55,6 @@ class HistoryUIViewController: UIViewController {
                     }
                 }
                 self.afterFetch()
-                print("inside data \(self.numOfExercises)")
                 //NOTE THE ADDITION OF THIS LINE
                 self.historyTableView.reloadData()
             }
@@ -67,12 +63,9 @@ class HistoryUIViewController: UIViewController {
     
     func afterFetch() {
         self.numOfExercises = self.exercises.count
-        
         for btn in exercises {
             totalPressed += btn.btnPressed.count
         }
-        
-        print("################### \(totalPressed)")
         
         totalAtmptLabel.setTitle("\(numOfExercises)", for: .normal)
         totalBtnLabel.setTitle("\(totalPressed)", for: .normal)
@@ -82,7 +75,6 @@ class HistoryUIViewController: UIViewController {
     {
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -95,7 +87,6 @@ class HistoryUIViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         super.prepare(for: segue, sender: sender)
-        
         // is this the segue to the details screen? (in more complex apps, there is more than one segue per screen)
         if segue.identifier == Const.showHistoryDetailSegue
         {
@@ -125,10 +116,7 @@ class HistoryUIViewController: UIViewController {
               detailViewController.exerciseIndex = indexPath.row
         }
     }
-
 }
-
-
 
 extension HistoryUIViewController : UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -142,7 +130,6 @@ extension HistoryUIViewController: UITableViewDataSource {
         // #warning Incomplete implementation, return the number of rows
         return exercises.count
     }
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"HistoryUITableViewCell", for: indexPath)

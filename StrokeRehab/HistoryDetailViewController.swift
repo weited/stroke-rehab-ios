@@ -33,10 +33,8 @@ class HistoryDetailViewController: UIViewController {
             repeDoneLabel.text = String(displayExercise.repetitionDone)
             totalPressedNumLabel.text = String(totalPressedNum)
 
-
             startAtLabel.text = displayExercise.startAt
             endAtLabel.text = displayExercise.endAt
-
             
             if displayExercise.isFreeMode == true {
                 goalTypeLabel.text = "Free play mode"
@@ -48,15 +46,11 @@ class HistoryDetailViewController: UIViewController {
                 statusLabel.text = displayExercise.completed ? "Completed" : "Uncompleted"
             }
         }
-        
-        
     }
-    
     
     @IBAction func deleteBtnTapped(_ sender: UIButton) {
         
         let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
-        
         let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
             self.deleteRecord(sender)
         })
@@ -70,7 +64,6 @@ class HistoryDetailViewController: UIViewController {
         
         self.present(dialogMessage, animated: true, completion: nil)
     }
-    
     
     @IBAction func shareBtnTapped(_ sender: UIButton) {
         var shareText = ""
@@ -108,7 +101,6 @@ class HistoryDetailViewController: UIViewController {
  // Pass the selected object to the new view controller.
  }
  */
-
 }
 
 extension HistoryDetailViewController : UITableViewDelegate {
@@ -124,14 +116,12 @@ extension HistoryDetailViewController: UITableViewDataSource {
         return btnPressedArry.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:Const.historyDetailCell, for: indexPath)
         
         // Configure the cell...
         //get the movie for this row
         let button = btnPressedArry[indexPath.row]
-        
         
         //        if let btn = button.first {
         //            cell.textLabel?.text = btn.key
@@ -141,27 +131,8 @@ extension HistoryDetailViewController: UITableViewDataSource {
         seqLabel?.text = String(indexPath.row+1)
         timeLabel?.text = button["time"]
         numPsdButton?.setTitle("\(button["btn"]!)", for: .normal)
-        if button["check"] == "true" {numPsdButton?.tintColor = .red}
-        //            numPsdButton?.layer.cornerRadius = 36
-        //        }
+        if button["check"] == "false" {numPsdButton?.tintColor = .red}
         
-        //        if let time = button.keys.first {
-        //            cell.textLabel?.text = time
-        //            let label = cell.viewWithTag(1) as? UILabel
-        //            label?.text = String(button.values.first)
-        ////                    print("cell button \(button)")
-        //        }
-        
-        
-        //down-cast the cell from UITableViewCell to our cell class MovieUITableViewCell
-        //note, this could fail, so we use an if let.
-        //        if let btnCell = cell as? HistoryUITableViewCell
-        //        {
-        //            //populate the cell
-        //            exerciseCell.repeLabel.text = String(exercise.repetition)
-        //            exerciseCell.startAtLabel.text = String(exercise.startAt)
-        //            exerciseCell.endAtLabel.text = exercise.endAt
-        //        }
         return cell
     }
 }

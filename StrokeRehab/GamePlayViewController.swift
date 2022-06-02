@@ -88,7 +88,6 @@ class GamePlayViewController: UIViewController {
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             self.startTimer()
-            print("Cancel button tapped")
         }
         
         dialogMessage.addAction(end)
@@ -127,16 +126,20 @@ class GamePlayViewController: UIViewController {
 //        print("Touch Down Action \(sender.tag)")
         if sender.tag != currentBtn {
             sender.setTitle("X", for: .normal)
-            colorBtn(btnTag: sender.tag, colorType: "wrong")
-//            sender.backgroundColor = Const.BtnColors.wrong
+//            colorBtn(btnTag: sender.tag, colorType: "wrong")
+            sender.backgroundColor = Const.BtnColors.wrong
+        } else {
+            sender.backgroundColor = Const.BtnColors.pressedIndicator
         }
     }
     
     @objc func buttonReleaseAction(sender: UIButton!) {
-        print("ReleaseAction \(sender.tag)")
+//        print("ReleaseAction \(sender.tag)")
         if sender.tag == currentBtn-1 {
             sender.setTitle("✓", for: .normal)
             sender.backgroundColor = Const.BtnColors.normal
+        } else if sender.tag == currentBtn {
+            sender.backgroundColor = Const.BtnColors.indicator
         } else {
             sender.setTitle("\(sender.tag)", for: .normal)
             sender.backgroundColor = Const.BtnColors.normal
@@ -179,16 +182,23 @@ class GamePlayViewController: UIViewController {
     
     // MARK: - Game Two Button Action
     @objc func twoButtonDownAction(sender: UIButton!) {
+        var pressCheck = "false"
 //        pressedBtn.append(sender.tag)
         print("current btn number is : \(currentBtn)")
+        if sender.tag % btnNum == currentBtn % btnNum {
+            sender.backgroundColor = Const.BtnColors.pressedIndicator
+        } else {
+            sender.backgroundColor = Const.BtnColors.pressedNomal
+        }
+        // if no button in the array, means this is the first time pressed
         if pressedBtn.isEmpty {
             pressedBtn.append(sender.tag)
-            print("Empty \(pressedBtn) and tag \(sender.tag)")
+            if sender.tag % btnNum == currentBtn % btnNum { pressCheck = "true" }
         } else {
-            // check two pressed btn equals current button
+            // this is second pressed button, check two pressed btn equals current button
+            pressedBtn.append(sender.tag)
             if (currentBtn % btnNum, sender.tag % btnNum) == (sender.tag % btnNum, pressedBtn.first! % btnNum) {
-                
-                print("Check in side ")
+                pressCheck = "true"
                 sender.setTitle("✓", for: .normal)
                 btnUIGroup[pressedBtn.first! - 1].setTitle("✓", for: .normal)
                 colorBtn(btnTag: sender.tag, colorType: "normal")
@@ -203,42 +213,45 @@ class GamePlayViewController: UIViewController {
                 
                 // Completed a round, Reset first btn, increase rounds
                 if currentBtn > btnNum {
-                    print("ctb > btn num")
                     currentBtn = 1
                     roundsDone += 1
                     roundsDoneLabel.text = String(roundsDone)
                     
-                    if isFreeMode == false && goalType == Const.GoalType.repetition.rawValue && roundsDone == repeNum {
-                        finishGame(isCompleted: true)
-                        print("You finished!")
-                        return
-                    }
-
                     resetBtn()
                     // random button position
                     if isBtnRandom { reorderBtnPosition() }
                 }
-                
             }
-            print("Same number \(pressedBtn) and tag \(sender.tag)")
-//            if sender.tag == pressedBtn.first { print("Same number \(pressedBtn) and tag \(sender.tag)")}
         }
-        print("pressed!!!!!!!!!! \(sender.tag)")
-    }
-    
-    @objc func twoBtnUpInsideAction(sender: UIButton!) {
-        print("up inside ")
-        if !pressedBtn.isEmpty {pressedBtn.removeLast()}
-        print("up inside \(pressedBtn)")
-    }
-    
-    @objc func twoBtnUpOutsideAction(sender: UIButton!) {
-        print("up out side \(sender.tag)")
-        if !pressedBtn.isEmpty {pressedBtn.removeLast()}
-
         
-        print("up out side \(pressedBtn)")
+//        print("now button has \(pressedBtn)")
+        // save pressed button to DB
+        var btnTitle : String
+        if sender.tag > btnNum {
+            btnTitle = String(sender.tag - btnNum)
+        } else {
+            btnTitle = String(sender.tag)
+        }
+        Exercise.addBtnPressedToDB(documentId: docId, repetitionDone: roundsDone, btnPressed: ["time" : getTimeStamp(), "btn": btnTitle, "check": pressCheck])
     }
+    
+    @objc func twoBtnReleaseAction(sender: UIButton!) {
+        if !pressedBtn.isEmpty {pressedBtn.removeLast()}
+        if sender.tag % btnNum == currentBtn {
+            colorBtn(btnTag: sender.tag, colorType: "indicator")
+        } else {
+            colorBtn(btnTag: sender.tag, colorType: "normal")
+        }
+    }
+    
+//    @objc func twoBtnUpOutsideAction(sender: UIButton!) {
+//        if !pressedBtn.isEmpty {pressedBtn.removeLast()}
+//        if sender.tag % btnNum == currentBtn {
+//            colorBtn(btnTag: sender.tag, colorType: "indicator")
+//        } else {
+//            colorBtn(btnTag: sender.tag, colorType: "normal")
+//        }
+//    }
     
     // MARK: Buttons
     func createBtnGroup() {
@@ -260,10 +273,9 @@ class GamePlayViewController: UIViewController {
                 button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpOutside)
             } else {
                 button.addTarget(self, action: #selector(twoButtonDownAction), for: .touchDown)
-                button.addTarget(self, action: #selector(twoBtnUpInsideAction), for: .touchUpInside)
-                
-                button.addTarget(self, action: #selector(twoBtnUpOutsideAction), for: .touchUpOutside)
-
+                button.addTarget(self, action: #selector(twoBtnReleaseAction), for: .touchUpInside)
+                button.addTarget(self, action: #selector(twoBtnReleaseAction), for: .touchUpOutside)
+                button.addTarget(self, action: #selector(twoBtnReleaseAction), for: .touchDragExit)
             }
             
             button.tag = index

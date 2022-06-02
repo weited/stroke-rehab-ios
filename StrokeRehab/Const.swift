@@ -28,9 +28,10 @@ struct Const {
     }
     
     struct BtnColors {
-        static let normal : UIColor = .init(red: 0.647468, green: 0.840358, blue: 0.980702, alpha: 1)
-        static let indicator : UIColor = .init(red: 1.02621, green: 0.864526, blue: 0.953756, alpha: 1)
-//        static let ticked : UIColor =
+        static let normal : UIColor = .init(red: 127/255, green: 181/255, blue: 255/255, alpha: 1)
+        static let indicator : UIColor = .init(red: 255/255, green: 196/255, blue: 221/255, alpha: 1)
         static let wrong : UIColor = .red
+        static let pressedNomal : UIColor = .init(red: 115/255, green: 153/255, blue: 255/255, alpha: 1)
+        static let pressedIndicator : UIColor = .init(red: 1, green: 175/255, blue: 200/255, alpha: 1)
     }
 }

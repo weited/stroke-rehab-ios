@@ -51,7 +51,6 @@ public struct Exercise : Codable
                     print("Successfully created execrise!")
                 }
             })
-            
         } catch let error {
             print("Error writing execrise to Firestore: \(error)")
         }
@@ -68,7 +67,7 @@ public struct Exercise : Codable
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
-                print("Successfully finished  execrise!")
+                print("Successfully updated execrise!")
             }
         })
     }
@@ -118,5 +117,4 @@ public struct Exercise : Codable
 
         return displayStr
     }
-    
 }

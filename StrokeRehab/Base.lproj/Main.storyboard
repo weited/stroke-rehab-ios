@@ -727,7 +727,7 @@
                                 </subviews>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s3R-0o-2wJ">
-                                <rect key="frame" x="20" y="157" width="374" height="680"/>
+                                <rect key="frame" x="20" y="157" width="374" height="656"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                         </subviews>
@@ -1092,7 +1092,7 @@ You have finished the exercise. </string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1EK-yj-nFY"/>
+        <segue reference="j3l-qY-3Df"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
