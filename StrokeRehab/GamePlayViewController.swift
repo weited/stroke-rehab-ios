@@ -230,7 +230,7 @@ class GamePlayViewController: UIViewController {
             print("Empty \(pressedBtn) and tag \(sender.tag)")
         } else {
             // check two pressed btn equals current button
-            if (currentBtn, sender.tag % btnNum) == (sender.tag % btnNum, pressedBtn.first! % btnNum) {
+            if (currentBtn % btnNum, sender.tag % btnNum) == (sender.tag % btnNum, pressedBtn.first! % btnNum) {
                 
                 print("Check in side ")
                 sender.setTitle("✓", for: .normal)
