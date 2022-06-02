@@ -4,12 +4,6 @@ import FirebaseFirestoreSwift
 
 public struct Exercise : Codable
 {
-//    @DocumentID var documentID:String?
-//    var title:String
-//    var year:Int32
-//    var duration:Float
-    
-    
     var id : String?
     var isFreeMode : Bool = false
     var gameGoalType : String = Const.GoalType.repetition.rawValue
@@ -22,12 +16,6 @@ public struct Exercise : Codable
     var endAt : String = ""
     var btnPressed: [[String:String]] = [[:]]
 //    var photoPath : String = ""
-//    var goal : GoalType = GoalType.repetition
-    
-//    enum GoalType : String {
-//        case repetition
-//        case timeLimit
-//    }
     
     func createExerciseDoc() {
         let db = Firestore.firestore()
