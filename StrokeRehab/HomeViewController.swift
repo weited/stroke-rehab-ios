@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLabel.text = defalutFile.string(forKey: "username")
+//        nameLabel.text = defalutFile.string(forKey: "username")?.isEmpty? defalutFile.string(forKey: "username") : "Explorer"
     }
     
     @IBAction func unwindToHome(sender: UIStoryboardSegue)

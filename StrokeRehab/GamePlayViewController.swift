@@ -10,7 +10,7 @@ class GamePlayViewController: UIViewController {
     var isFreeMode : Bool = false
     var isBtnRandom : Bool = true
     var isBtnIndicator : Bool = true
-    var btnNum : Int = 3
+    var btnNum : Int = 2
     var btnSize : Int = 50
     var timeLimit : Int = 10
     var isCompleted : Bool = false
@@ -102,6 +102,10 @@ class GamePlayViewController: UIViewController {
                     button.addTarget(self, action: #selector(buttonReleaseAction), for: .touchUpOutside)
                 } else {
                     button.addTarget(self, action: #selector(twoButtonDownAction), for: .touchDown)
+                    button.addTarget(self, action: #selector(twoBtnUpInsideAction), for: .touchUpInside)
+                    
+                    button.addTarget(self, action: #selector(twoBtnUpOutsideAction), for: .touchUpOutside)
+
                 }
                 
                 button.tag = index
@@ -219,14 +223,65 @@ class GamePlayViewController: UIViewController {
     }
     
     @objc func twoButtonDownAction(sender: UIButton!) {
+//        pressedBtn.append(sender.tag)
+        print("current btn number is : \(currentBtn)")
         if pressedBtn.isEmpty {
             pressedBtn.append(sender.tag)
             print("Empty \(pressedBtn) and tag \(sender.tag)")
         } else {
+            // check two pressed btn equals current button
+            if (currentBtn, sender.tag % btnNum) == (sender.tag % btnNum, pressedBtn.first! % btnNum) {
+                
+                print("Check in side ")
+                sender.setTitle("✓", for: .normal)
+                btnUIGroup[pressedBtn.first! - 1].setTitle("✓", for: .normal)
+                colorBtn(btnTag: sender.tag, colorType: "normal")
+                colorBtn(btnTag: pressedBtn.first!, colorType: "normal")
+                
+                //set next btn indication
+                if isBtnIndicator == true {
+                    colorBtn(btnTag: sender.tag + 1, colorType: "indicator")
+                    colorBtn(btnTag: pressedBtn.first! + 1, colorType: "indicator")
+                }
+                currentBtn += 1
+                
+                // Completed a round, Reset first btn, increase rounds
+                if currentBtn > btnNum {
+                    print("ctb > btn num")
+                    currentBtn = 1
+                    roundsDone += 1
+                    roundsDoneLabel.text = String(roundsDone)
+                    
+                    if isFreeMode == false && goalType == Const.GoalType.repetition.rawValue && roundsDone == repeNum {
+                        finishGame(isCompleted: true)
+                        print("You finished!")
+                        return
+                    }
+
+                    resetBtn()
+                    // random button position
+                    if isBtnRandom { reorderBtnPosition() }
+                }
+                
+            }
             print("Same number \(pressedBtn) and tag \(sender.tag)")
 //            if sender.tag == pressedBtn.first { print("Same number \(pressedBtn) and tag \(sender.tag)")}
         }
         print("pressed!!!!!!!!!! \(sender.tag)")
+    }
+    
+    @objc func twoBtnUpInsideAction(sender: UIButton!) {
+        print("up inside ")
+        if !pressedBtn.isEmpty {pressedBtn.removeLast()}
+        print("up inside \(pressedBtn)")
+    }
+    
+    @objc func twoBtnUpOutsideAction(sender: UIButton!) {
+        print("up out side \(sender.tag)")
+        if !pressedBtn.isEmpty {pressedBtn.removeLast()}
+
+        
+        print("up out side \(pressedBtn)")
     }
     
     func startTimer() {
@@ -301,6 +356,20 @@ class GamePlayViewController: UIViewController {
             checkBtnOverlap(btnGroup: btnUIGroup)
         }
         while isOverlap == true
+    }
+    
+    func colorBtn(btnTag : Int, colorType: String) {
+        let btnIndex = btnTag - 1
+        switch colorType {
+        case "normal":
+            btnUIGroup[btnIndex].backgroundColor = Const.BtnColors.normal
+        case "wrong":
+            btnUIGroup[btnIndex].backgroundColor = Const.BtnColors.wrong
+        case "indicator":
+            btnUIGroup[btnIndex].backgroundColor = Const.BtnColors.indicator
+        default:
+            btnUIGroup[btnIndex].backgroundColor = Const.BtnColors.normal
+        }
     }
     
     func getTimeStamp(format: String = "btn") -> String {
