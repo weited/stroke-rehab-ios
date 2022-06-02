@@ -82,7 +82,6 @@ class GamePlayViewController: UIViewController {
     @IBAction func endGameBtnTapped(_ sender: Any) {
         timer.invalidate()
         let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to end?", preferredStyle: .alert)
-        
         let end = UIAlertAction(title: "End", style: .destructive, handler: { (action) -> Void in
             self.finishGame(isCompleted: false)
         })
@@ -98,8 +97,8 @@ class GamePlayViewController: UIViewController {
         self.present(dialogMessage, animated: true, completion: nil)
     }
     
-    
     // MARK: - Timer
+    
     func startTimer() {
         timer.invalidate()
         if goalType == Const.GoalType.repetition.rawValue {
@@ -125,10 +124,11 @@ class GamePlayViewController: UIViewController {
     
     // MARK: - Game One Button Action
     @objc func buttonDownAction(sender: UIButton!) {
-        print("Touch Down Action \(sender.tag)")
+//        print("Touch Down Action \(sender.tag)")
         if sender.tag != currentBtn {
             sender.setTitle("X", for: .normal)
-            sender.backgroundColor = Const.BtnColors.wrong
+            colorBtn(btnTag: sender.tag, colorType: "wrong")
+//            sender.backgroundColor = Const.BtnColors.wrong
         }
     }
     
@@ -144,9 +144,7 @@ class GamePlayViewController: UIViewController {
     }
     
     @objc func buttonAction(sender: UIButton!) {
-        print("Button tapped\(sender.tag)")
         var pressCheck = "false"
-        
         if sender.tag == currentBtn {
             pressCheck = "true"
             sender.setTitle("✓", for: .normal)
